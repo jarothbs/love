@@ -1,546 +1,399 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alicia en el País de las Maravillas - Para mi Amor</title>
-    <style>
-        :root {
-            --primary-purple: #8A2BE2;
-            --primary-green: #4CAF50;
-            --light-purple: #E6E6FA;
-            --light-green: #E8F5E9;
-        }
-        
-        body {
-            font-family: 'Georgia', serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-purple);
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        header {
-            background-color: var(--primary-purple);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header-title {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .header-subtitle {
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-top: 0;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .love-note {
-            background-color: rgba(255, 255, 255, 0.9);
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            color: var(--primary-purple);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .book-container {
-            display: flex;
-            justify-content: center;
-            perspective: 1000px;
-            margin: 3rem 0;
-        }
-        
-        .book {
-            width: 80%;
-            max-width: 800px;
-            height: 500px;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: rotateY(-10deg);
-            transition: transform 1s ease;
-            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .book:hover {
-            transform: rotateY(0deg);
-        }
-        
-        .book-cover {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: var(--primary-green);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transform-origin: left;
-            transform: rotateY(0deg);
-            transition: transform 1s ease;
-            backface-visibility: hidden;
-            border-radius: 0 5px 5px 0;
-            padding: 20px;
-            box-sizing: border-box;
-            background-image: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
-        }
-        
-        .book:hover .book-cover {
-            transform: rotateY(-160deg);
-        }
-        
-        .book-content {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            padding: 30px;
-            box-sizing: border-box;
-            overflow-y: auto;
-            border-radius: 5px;
-        }
-        
-        .book-title {
-            text-align: center;
-            color: var(--primary-purple);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .chapter {
-            margin-bottom: 2rem;
-        }
-        
-        .chapter-title {
-            color: var(--primary-green);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--light-green);
-            padding-bottom: 0.5rem;
-        }
-        
-        .wonderland-element {
-            position: absolute;
-            animation: float 6s ease-in-out infinite;
-            opacity: 0.7;
-            z-index: 1;
-        }
-        
-        .rabbit {
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .hat {
-            top: 15%;
-            right: 15%;
-            animation-delay: 1s;
-        }
-        
-        .teacup {
-            bottom: 15%;
-            left: 20%;
-            animation-delay: 2s;
-        }
-        
-        .card {
-            bottom: 10%;
-            right: 10%;
-            animation-delay: 3s;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(5deg);
-            }
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-        }
-        
-        .quote-section {
-            background-color: var(--light-green);
-            padding: 3rem;
-            margin: 3rem 0;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .quote {
-            font-size: 1.3rem;
-            font-style: italic;
-            color: var(--primary-purple);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .character-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .character-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .character-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .character-image {
-            width: 100%;
-            height: 180px;
-            background-color: var(--light-purple);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .character-info {
-            padding: 1.5rem;
-        }
-        
-        .character-name {
-            color: var(--primary-purple);
-            margin-top: 0;
-        }
-        
-        footer {
-            background-color: var(--primary-green);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-        
-        .love-message {
-            font-style: italic;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .heart {
-            color: #ff6b6b;
-            font-size: 1.5rem;
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.3);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-        
-        .navigation {
-            background-color: var(--primary-purple);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-around;
-            padding: 1rem;
-        }
-        
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .alice-falling {
-            position: fixed;
-            top: -100px;
-            left: 50%;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-purple);
-            opacity: 0;
-            animation: falling 15s linear infinite;
-            z-index: -1;
-        }
-        
-        @keyframes falling {
-            0% {
-                opacity: 0;
-                top: -100px;
-                transform: translateX(0) rotate(0deg);
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                opacity: 0;
-                top: 120vh;
-                transform: translateX(100px) rotate(360deg);
-            }
-        }
-        
-        .alice-falling:nth-child(2) {
-            left: 30%;
-            animation-delay: 5s;
-            background-color: var(--primary-green);
-        }
-        
-        .alice-falling:nth-child(3) {
-            left: 70%;
-            animation-delay: 8s;
-            background-color: #ff6b6b;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alicia en el País de las Maravillas</title>
+  <style>
+    /* Estilos generales */
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #2c003e 0%, #4d007d 50%, #004d40 100%);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #ff6ec4, #7873f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav {
+      background: #5e218d;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      position: relative;
+    }
+
+    nav button::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: #fff;
+      transition: width 0.3s ease;
+    }
+
+    nav button:hover::after,
+    nav button.active::after {
+      width: 100%;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .book-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .book-page {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 2rem;
+      min-height: 400px;
+      line-height: 1.8;
+    }
+
+    .book-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .book-nav button {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .book-nav button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .book-nav button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .characters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .character-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .character-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .decoration {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .decoration div {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.2;
+      mix-blend-mode: overlay;
+      animation: float 15s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
 </head>
 <body>
-    <div class="alice-falling"></div>
-    <div class="alice-falling"></div>
-    <div class="alice-falling"></div>
-    
-    <header>
-        <div class="wonderland-element rabbit">🐰</div>
-        <div class="wonderland-element hat">🎩</div>
-        <div class="wonderland-element teacup">☕</div>
-        <div class="wonderland-element card">🃏</div>
-        
-        <h1 class="header-title">Alicia en el País de las Maravillas</h1>
-        <p class="header-subtitle">Un viaje mágico a través de la imaginación</p>
-        
-        <div class="love-note">
-            <p>Para mi amada,</p>
-            <p>Porque el mundo es más mágico cuando estás conmigo. Este espacio está dedicado a tu historia favorita, para que puedas sumergirte en la magia de Alicia siempre que lo desees.</p>
-            <p>Con todo mi amor.</p>
+
+  <!-- Fondo decorativo -->
+  <div class="decoration" id="decoration"></div>
+
+  <!-- Cabecera -->
+  <header>
+    <h1>Alicia en el País de las Maravillas</h1>
+    <p>Para mi amor más especial</p>
+  </header>
+
+  <!-- Navegación -->
+  <nav id="nav">
+    <button class="active" data-section="inicio">Inicio</button>
+    <button data-section="el-libro">El Libro</button>
+    <button data-section="personajes">Personajes</button>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main>
+    <!-- Sección Inicio -->
+    <section id="inicio" class="active">
+      <h2>Bienvenida a tu mundo mágico</h2>
+      <p>
+        Esta página está creada con amor para ti, inspirada en “Alicia en el País de las Maravillas”, un cuento que nos recuerda que la imaginación no tiene límites. Aquí podrás leer el libro completo, conocer a sus personajes y disfrutar de un ambiente romántico y mágico.
+      </p>
+      <p class="mt-4">
+        Este es nuestro pequeño País de las Maravillas, hecho con cariño para ti. Espero que te sientas tan especial aquí como tú me haces sentir a mí cada día.
+      </p>
+    </section>
+
+    <!-- Sección El Libro -->
+    <section id="el-libro">
+      <h2>El Libro Mágico</h2>
+      <div class="book-container">
+        <div class="book-page" id="book-page">
+          <h3 id="chapter-title">Cargando...</h3>
+          <div id="chapter-content" style="white-space: pre-line;"></div>
         </div>
-    </header>
-    
-    <nav class="navigation">
-        <div class="nav-container">
-            <a href="#inicio" class="nav-link">Inicio</a>
-            <a href="#libro" class="nav-link">El Libro</a>
-            <a href="#personajes" class="nav-link">Personajes</a>
-            <a href="#citas" class="nav-link">Citas Célebres</a>
+        <div class="book-nav">
+          <button id="prev-chapter">< Anterior</button>
+          <span id="page-info">Página 1 de 1</span>
+          <button id="next-chapter">Siguiente ></button>
         </div>
-    </nav>
-    
-    <div class="container" id="inicio">
-        <h2 style="color: var(--primary-purple); text-align: center;">Bienvenida a tu rincón mágico</h2>
-        <p>Lewis Carroll (seudónimo de Charles Lutwidge Dodgson) publicó "Las Aventuras de Alicia en el País de las Maravillas" en 1865. Esta historia mágica nos lleva a un mundo surrealista lleno de personajes extravagantes y situaciones imposibles, mostrando la maravilla de la imaginación infantil.</p>
-        
-        <p>Esta página está creada con amor para que puedas explorar y disfrutar de esta historia inmortal que tanto amas. El relato de Alicia nos enseña a mantener nuestra curiosidad y a no temer lo desconocido, valores que veo reflejados en ti cada día.</p>
-    </div>
-    
-    <div class="container" id="libro">
-        <h2 style="color: var(--primary-green); text-align: center;">El Libro Mágico</h2>
-        
-        <div class="book-container">
-            <div class="book">
-                <div class="book-cover">
-                    <h2>Alicia en el País de las Maravillas</h2>
-                </div>
-                <div class="book-content">
-                    <h2 class="book-title">Alicia en el País de las Maravillas</h2>
-                    <p><em>Por Lewis Carroll</em></p>
-                    
-                    <div class="chapter">
-                        <h3 class="chapter-title">Capítulo I: Por la madriguera del conejo</h3>
-                        <p>Alicia empezaba ya a cansarse de estar sentada con su hermana a la orilla del río, sin tener nada que hacer: había echado un par de ojeadas al libro que su hermana estaba leyendo, pero no tenía dibujos ni diálogos. «¿Y de qué sirve un libro sin dibujos ni diálogos?», se preguntaba Alicia.</p>
-                        <p>Así pues, estaba pensando (y pensar le costaba cierto esfuerzo, porque el calor del día la había dejado soñolienta y aturdida) si el placer de tejer una guirnalda de margaritas la compensaría del trabajo de levantarse y coger las margaritas, cuando de pronto saltó cerca de ella un Conejo Blanco de ojos rosados.</p>
-                        <p>No había nada muy extraordinario en esto, ni tampoco le pareció a Alicia muy extraño oír que el conejo se decía a sí mismo: «¡Dios mío! ¡Dios mío! ¡Voy a llegar tarde!» (Cuando pensó en ello después, decidió que, desde luego, hubiera debido sorprenderla mucho, pero en aquel momento le pareció lo más natural del mundo). Pero cuando el conejo se sacó un reloj de bolsillo del chaleco, lo miró y echó a correr, Alicia se levantó de un salto, porque comprendió de golpe que ella nunca había visto un conejo con chaleco, ni con reloj que sacarse de él, y, ardiendo de curiosidad, se puso a correr tras el conejo por la pradera, y llegó justo a tiempo para ver cómo se precipitaba en una madriguera que se abría al pie del seto.</p>
-                    </div>
-                    
-                    <div class="chapter">
-                        <h3 class="chapter-title">Fragmentos destacados</h3>
-                        <p>«¿Quién eres tú?», dijo la Oruga.</p>
-                        <p>No era una forma demasiado alentadora de iniciar una conversación. Alicia contestó con cierta timidez:</p>
-                        <p>«Apenas lo sé, señora, en este momento... Sí sé quién era al levantarme esta mañana, pero he cambiado varias veces desde entonces.»</p>
-                        <br>
-                        <p>«Pero no quiero ir entre locos», observó Alicia.</p>
-                        <p>«Oh, no puedes evitarlo», dijo el Gato. «Todos estamos locos aquí. Yo estoy loco. Tú estás loca.»</p>
-                        <p>«¿Cómo sabes que estoy loca?», preguntó Alicia.</p>
-                        <p>«Tienes que estarlo», dijo el Gato, «o no habrías venido aquí.»</p>
-                    </div>
-                    
-                    <p style="text-align: center; color: var(--primary-purple); font-style: italic;">Este libro interactivo contiene solo algunos fragmentos de la obra original. Para leer el libro completo, te recomendamos visitar la biblioteca o adquirir una copia completa.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="quote-section">
-        <p class="quote">"Imposible significa simplemente que no lo has intentado todavía."</p>
-        <p>— El Gato de Cheshire</p>
-    </div>
-    
-    <div class="container" id="personajes">
-        <h2 style="color: var(--primary-purple); text-align: center;">Los Personajes del Cuento</h2>
-        
-        <div class="character-gallery">
-            <div class="character-card">
-                <div class="character-image">👧</div>
-                <div class="character-info">
-                    <h3 class="character-name">Alicia</h3>
-                    <p>La protagonista curiosa y valiente que se aventura en el País de las Maravillas tras seguir al Conejo Blanco.</p>
-                </div>
-            </div>
-            
-            <div class="character-card">
-                <div class="character-image">🐰</div>
-                <div class="character-info">
-                    <h3 class="character-name">El Conejo Blanco</h3>
-                    <p>Siempre con prisa y preocupado por llegar tarde, lleva a Alicia al País de las Maravillas.</p>
-                </div>
-            </div>
-            
-            <div class="character-card">
-                <div class="character-image">😺</div>
-                <div class="character-info">
-                    <h3 class="character-name">El Gato de Cheshire</h3>
-                    <p>Enigmático y filosófico, conocido por su gran sonrisa y su capacidad para aparecer y desaparecer.</p>
-                </div>
-            </div>
-            
-            <div class="character-card">
-                <div class="character-image">🎩</div>
-                <div class="character-info">
-                    <h3 class="character-name">El Sombrerero Loco</h3>
-                    <p>Excéntrico anfitrión de la desconcertante fiesta del té, atrapado eternamente a las seis de la tarde.</p>
-                </div>
-            </div>
-            
-            <div class="character-card">
-                <div class="character-image">👸</div>
-                <div class="character-info">
-                    <h3 class="character-name">La Reina de Corazones</h3>
-                    <p>Gobernante temperamental conocida por ordenar decapitaciones ante el menor disgusto.</p>
-                </div>
-            </div>
-            
-            <div class="character-card">
-                <div class="character-image">🐛</div>
-                <div class="character-info">
-                    <h3 class="character-name">La Oruga</h3>
-                    <p>Sabio personaje que ayuda a Alicia a reflexionar sobre su identidad mientras fuma su narguile.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="container" id="citas">
-        <h2 style="color: var(--primary-green); text-align: center;">Citas Memorables</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
-            <div style="background-color: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                <p>"Si no sabes a dónde quieres ir, entonces no importa qué camino tomes."</p>
-                <p style="text-align: right; color: var(--primary-purple);">— Gato de Cheshire</p>
-            </div>
-            
-            <div style="background-color: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                <p>"Es una pobre memoria la que sólo funciona hacia atrás."</p>
-                <p style="text-align: right; color: var(--primary-purple);">— La Reina Blanca</p>
-            </div>
-            
-            <div style="background-color: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                <p>"Comienza por el principio, y sigue hasta llegar al final; entonces, detente."</p>
-                <p style="text-align: right; color: var(--primary-purple);">— El Rey de Corazones</p>
-            </div>
-            
-            <div style="background-color: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                <p>"¡Qué extraño es todo hoy! Y ayer todo pasaba como de costumbre. Me pregunto si habré cambiado durante la noche."</p>
-                <p style="text-align: right; color: var(--primary-purple);">— Alicia</p>
-            </div>
-        </div>
-    </div>
-    
-    <footer>
-        <p class="love-message">Porque nuestro amor es tan mágico como el País de las Maravillas... y mucho más real. <span class="heart">❤</span></p>
-        <p>Creado con amor para ti.</p>
-    </footer>
-    
-    <script>
-        // Crear más elementos cayendo
-        function createFallingElements() {
-            const symbols = ['🐰', '🎩', '☕', '🃏', '🌹', '⏰', '🍄', '👑'];
-            const container = document.body;
-            
-            for (let i = 0; i < 15; i++) {
-                const element = document.createElement('div');
-                const symbol = symbols[Math.floor(Math.random() * symbols.length)];
-                element.textContent = symbol;
-                element.style.position = 'fixed';
-                element.style.left = Math.random() * 100 + 'vw';
-                element.style.top = -30 + 'px';
-                element.style.fontSize = (Math.random() * 20 + 10) + 'px';
-                element.style.opacity = '0';
-                element.style.zIndex = '-1';
-                
-                const duration = Math.random() * 20 + 10;
-                const delay = Math.random() * 40;
-                
-                element.style.animation = `falling ${duration}s linear ${delay}s infinite`;
-                
-                container.appendChild(element);
-            }
-        }
-        
-        createFallingElements();
-        
-        // Animación suave al hacer clic en los enlaces de navegación
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+      </div>
+    </section>
+
+    <!-- Sección Personajes -->
+    <section id="personajes">
+      <h2>Personajes Encantadores</h2>
+      <div class="characters-grid" id="characters-grid"></div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>Una experiencia diseñada con amor para ti, mi propia Alicia.</p>
+    <p>© 2025 El mundo de nuestra imaginación</p>
+  </footer>
+
+  <!-- Música de fondo -->
+  <audio id="background-music" loop autoplay>
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Music_for_Videos/Sarah_Jessica/sounds_from_a_parallel_world/Sarah_Jessica_-_01_-_Magical_Moments.mp3 " type="audio/mp3" />
+    Tu navegador no admite reproducción de audio.
+  </audio>
+
+  <!-- Script del libro y personajes -->
+  <script>
+    // Capítulos completos del libro
+    const storyChapters = [
+      {
+        title: "Capítulo I: Cayendo por la madriguera",
+        content: `Alicia se encuentra sentada en la orilla junto a su hermana, sintiéndose aburrida y soñolienta debido al calor. El libro de su hermana no tiene dibujos ni diálogos, lo que la decepciona. De repente, un Conejo Blanco con ojos rojos pasa corriendo muy cerca, murmurando: "¡Ay, ay, ay, que llego tarde!". Lo más sorprendente para Alicia es cuando el Conejo saca un reloj del bolsillo de su chaleco. Llena de curiosidad, lo sigue a través del campo y lo ve desaparecer en una gran madriguera debajo de un cerco. Sin pensarlo dos veces, Alicia entra tras él.\n\nLa madriguera se extiende como un túnel y luego se hunde bruscamente, haciendo que Alicia caiga en lo que parece un pozo muy profundo. La caída es lenta, dándole tiempo para observar las paredes llenas de armarios, bibliotecas, mapas y cuadros. Toma un tarro etiquetado "Mermelada de naranjas", pero está vacío. Lo coloca en otro armario para no lastimar a nadie abajo. Reflexiona que después de tal caída, rodar por las escaleras le parecerá una nimiedad. Se pregunta cuántas millas ha caído y si estará cerca del centro de la Tierra, e incluso si atravesará la Tierra y aparecerá entre "los Antipáticos". Piensa en su gata Dinah y se pregunta si los gatos comen murciélagos, o si los murciélagos comen gatos, adormeciéndose un poco. De pronto, aterriza sobre un montón de ramas y hojas secas, ilesa. Ve al Conejo Blanco apresurándose por otro largo pasillo y lo sigue, escuchándolo decir: "¡Por mis orejas y mis bigotes! ¡Qué tarde se me está haciendo!".`
+      },
+      {
+        title: "Capítulo II: Un charco de lágrimas",
+        content: `Alicia casi alcanza al Conejo Blanco al doblar un recodo, pero este desaparece. Se encuentra en un vestíbulo largo y bajo, iluminado por lámparas, con muchas puertas cerradas. Intenta abrirlas sin éxito. De pronto, ve una mesita de tres patas de vidrio macizo con una diminuta llavecita dorada. Prueba la llave en todas las puertas, pero o las cerraduras son muy grandes o la llave muy pequeña. En una segunda revisión, descubre una cortina baja detrás de la cual hay una puertecita de unas quince pulgadas de alto. La llavecita encaja perfectamente.\n\nAbre la puerta y ve un pasillito que conduce al jardín más hermoso que jamás haya visto, lleno de flores refulgentes y frescas fuentes. Sin embargo, ni siquiera su cabeza cabe por el hueco. Desea poder plegarse como un telescopio. Vuelve a la mesa esperando encontrar otra llave o un manual, y encuentra una botellita con una etiqueta que dice "BÉBEME". Con cautela, verifica que no diga "veneno". El líquido tiene un sabor delicioso (tarta de cerezas, flan, ananá, pavo asado, almíbar y tostada caliente con manteca) y lo termina.\n\nComienza a encoger, sintiéndose como si se plegara como un telescopio, hasta medir solo diez pulgadas. Se alegra de tener el tamaño adecuado para pasar por la puertecita. Espera un poco para ver si sigue encogiéndose, temiendo desaparecer como una vela. Al llegar a la puerta, se da cuenta de que olvidó la llavecita dorada y ahora no puede alcanzarla. Intenta trepar por una pata de la mesa, pero resbala. Cansada, se sienta en el suelo y llora amargamente. Se reprende a sí misma por llorar. Pronto, sus ojos encuentran una cajita de vidrio debajo de la mesa con un bizcocho diminuto que tiene la palabra "CÓMEME" escrita con pasas de uva. Decide comerlo, esperando que la haga crecer para alcanzar la llave o encoger más para pasar por debajo de la puerta. Come un bocadito, pero no nota ningún cambio inmediato de tamaño, lo que le parece aburrido. Termina el bizcocho.\n\nDe repente, grita: "¡Cada vez más extrañísimo!". Se está desplegando como el telescopio más gigante, y sus pies se alejan tanto que apenas puede verlos. Se preocupa por quién les pondrá las medias y los zapatos. Su cabeza golpea el cielorraso; ahora mide más de nueve pies. Recoge la llavecita dorada y corre hacia la puerta del jardín, pero ahora es demasiado grande. Se siente horrible por ser tan pequeña. Al decir esto, resbala y cae ¡plash! en el agua salada: el charco de lágrimas que había llorado cuando medía nueve pies.`
+      },
+      {
+        title: "Capítulo III: Una carrera de comité y una historia que trae cola",
+        content: `Mientras nada en el charco, Alicia piensa que se ha caído en el mar y podría volver en tren. Se da cuenta de que está en sus propias lágrimas y se siente castigada. Oye algo zambullirse y descubre que es un Ratón que también resbaló. Intenta hablarle cortésmente en inglés ("¡Oh, Ratón! ¿Conoce usted el modo de salir de este charco?") e incluso en francés ("Où est ma chatte?"), recordando la gramática latina de su hermano. La mención de "chatte" (gata) asusta al Ratón. Alicia se disculpa y luego, sin pensar, habla de su gata Dinah y su habilidad para cazar ratones, lo que ofende profundamente al Ratón. Intenta cambiar de tema hablando de un perrito, pero vuelve a mencionar su utilidad para matar ratas, ofendiendo de nuevo al Ratón, que se aleja nadando. Alicia lo llama y le promete no hablar más de gatos ni perros. El Ratón regresa, pálido y tembloroso, y dice que les contará su historia en la orilla para que entiendan su odio.\n\nLlegan a la orilla junto con un Pato, un Dodo, un Loro, un Aguilucho y otras criaturas extrañas, todos mojados y enfadados. Discuten cómo secarse. Alicia habla con ellos con naturalidad. El Ratón propone solemnemente una "carrera de comité". Explica que se traza una pista circular y todos empiezan y terminan de correr cuando quieren. Después de media hora, el Dodo declara terminada la carrera y, tras pensarlo, anuncia que todos han ganado y deben tener premio. Alicia, a instancias del Dodo, reparte confites de su bolsillo como premios. El Ratón señala que Alicia también debe tener un premio. El Dodo le pide a Alicia lo que tiene en el bolsillo (un dedal) y se lo entrega solemnemente como premio. Todos vitorean.\n\nLuego comen los confites, con algo de alboroto. Le piden al Ratón que cuente algo más. Alicia le recuerda su promesa de contar su historia y por qué odia a los "G y a los P". El Ratón suspira que es "una larga y triste historia, ¡una historia que trae cola!". Alicia mira la cola del Ratón y se imagina el poema en forma de cola sobre "Furia" y un ratón. El Ratón la acusa de no prestar atención. Alicia, pensando que se refiere a nudos en su cola, se ofrece ayudar a deshacerlos. El Ratón se ofende y se marcha. Los demás animales también se van cuando Alicia vuelve a mencionar a Dinah y su habilidad para cazar pájaros. Alicia se queda sola y triste. Oye pasitos y espera que el Ratón haya regresado.`
+      },
+      {
+        title: "Capítulo IV: El Conejo manda un recado",
+        content: `Es el Conejo Blanco, que regresa trotando y buscando ansiosamente el abanico y los guantes que perdió, temiendo la furia de la Duquesa. Alicia también busca, pero el vestíbulo y la mesa han desaparecido. El Conejo ve a Alicia y, confundiéndola con su sirvienta Mary Ann, le ordena con enojo que corra a su casa a buscarle un par de guantes y un abanico. Alicia, demasiado asustada para explicar el error, corre en la dirección indicada.\n\nLlega a una casita prolija con una placa que dice "C. Blanco". Entra sin golpear y sube las escaleras, temiendo encontrarse con la verdadera Mary Ann. Se imagina a su gata Dinah dándole órdenes. Encuentra una piecita con un abanico y varios pares de guantecitos blancos sobre una mesada. Recoge un par y el abanico, y está por irse cuando ve una botellita cerca del espejo, sin etiqueta. Decide beberla, esperando que le ocurra algo interesante.\n\nLa bebida la hace crecer muchísimo, más rápido de lo esperado. Antes de terminar la mitad, su cabeza golpea el cielorraso y tiene que agacharse. Deja la botella, deseando no haber bebido tanto, pues ya no puede salir por la puerta. Sigue creciendo y tiene que arrodillarse, luego tirarse al suelo con un codo contra la puerta y el otro brazo rodeando su cabeza. Como último recurso, saca un brazo por la ventana y un pie por la chimenea. La botellita agota su efecto y deja de crecer, pero está muy incómoda y desdichada. Piensa que era mucho más lindo en casa, sin tantos cambios de tamaño ni órdenes de conejos. Se pregunta si alguna vez se hará más vieja o si siempre tendrá lecciones.`
+      },
+      {
+        title: "Capítulo V: Consejo de una oruga",
+        content: `Alicia, aunque asustada por el cachorro gigantesco, intenta silbarle y le extiende una ramita. El cachorro juega con la ramita y Alicia se esconde detrás de un cardo para no ser aplastada. Logra escapar cuando el cachorro se cansa. Se apoya en un botón de oro, recordando que debe crecer de nuevo. Cerca hay un hongo enorme, casi tan alto como ella. Se para en puntas de pie y ve a una gran Oruga azul sentada encima, con los brazos cruzados, fumando un largo narguile tranquilamente.\n\nLa Oruga y Alicia se miran en silencio. Finalmente, la Oruga pregunta con voz lánguida: "¿Quién eres tú?". Alicia responde tímidamente que no está segura, que sabía quién era por la mañana pero cree haber cambiado varias veces. La Oruga le pide que se explique, pero Alicia dice que no puede porque no es ella misma y pasar por tantos tamaños en un día la confunde. La Oruga no lo considera confuso. Alicia sugiere que tal vez la Oruga se sienta rara cuando se convierta en crisálida y luego en mariposa. La Oruga lo niega y vuelve a preguntar con desprecio quién es Alicia.`
+      },
+      {
+        title: "Capítulo VI: Marrano y pimienta",
+        content: `Alicia observa la casa durante un par de minutos. De pronto, un lacayo de librea con cara de pez sale del bosque y golpea la puerta. Otro lacayo de librea, con cara de rana, abre. Ambos llevan pelucas empolvadas. El Lacayo-Pez entrega una gran carta al Lacayo-Rana, diciendo solemnemente: "Para la Duquesa. Una invitación para jugar al croquet de parte de la Reina". El Lacayo-Rana repite la frase invirtiendo el orden. Ambos se inclinan y sus rizos se enredan. Alicia ríe tanto que tiene que volver al bosque. Cuando regresa, el Lacayo-Pez se ha ido y el Lacayo-Rana está sentado en el suelo mirando al cielo.\n\nAlicia recoge al bebé con dificultad; es una criatura de formas extrañas que estira brazos y piernas como una estrella de mar y resopla como una locomotora. Encuentra el modo de sostenerlo (retorciéndolo en un nudo y sujetándole oreja y pie) y lo saca al aire libre, pensando que lo matarían si lo dejaba. El bebé gruñe. Alicia le dice que no es modo de expresarse. El bebé vuelve a gruñir. Alicia nota que tiene una nariz muy respingada, como un hocico, y ojos pequeños. Piensa que tal vez solo solloza, pero no hay lágrimas. Le advierte seriamente que si piensa convertirse en un marrano, no tendrá nada más que ver con él. El bebé solloza o gruñe. Siguen en silencio. Alicia se pregunta qué hará con él al llegar a casa cuando la criatura gruñe tan fuerte que Alicia la mira alarmada. No hay duda: es un marrano. Alicia piensa que es ridículo seguir llevándolo. Deposita a la criaturita en el suelo y se siente aliviada al verla trotar hacia el bosque. Piensa que de niño habría sido feo, pero como cerdito es lindo. Se sobresalta al ver al Gato de Cheshire sentado en una rama cercana.`
+      },
+      {
+        title: "Capítulo VII: Una merienda de locos",
+        content: `Frente a la casa, bajo un árbol, hay una mesa servida. La Liebre de Marzo y el Sombrerero toman el té. Entre ellos, un Lirón duerme profundamente, usado como almohadón por los otros dos, que conversan por encima de su cabeza. Alicia piensa que es incómodo para el Lirón. Aunque la mesa es grande, los tres están apiñados en una punta. Al ver llegar a Alicia, gritan: "¡No hay lugar! ¡No hay lugar!". Alicia, indignada, responde que hay muchísimo lugar y se sienta en un gran sillón.\n\nLa Liebre de Marzo la anima a servirse vino. Alicia no ve más que té. "No lo hay", dice la Liebre. Alicia se enoja porque fue incorrecto ofrecérselo. La Liebre replica que tampoco fue correcto sentarse sin invitación. Alicia argumenta que la mesa estaba servida para más de tres. El Sombrerero, tras observarla con curiosidad, le dice que le anda faltando un corte de pelo. Alicia, severa, le dice que no haga observaciones personales, que es grosero. El Sombrerero abre grandes los ojos y pregunta: "¿En qué se parecen un cuervo y un escritorio?". Alicia se alegra de que empiecen las adivinanzas y cree poder adivinarla.`
+      },
+      {
+        title: "Capítulo VIII: La cancha de croquet de la Reina",
+        content: `Alicia nunca había visto una cancha de croquet tan rara: llena de lomitas y pozos; las pelotas eran erizos vivos y los palos, flamencos vivos; los soldados se doblaban para formar los arcos. Alicia tiene dificultades para manejar su flamenco, que suele girar la cabeza para mirarla justo cuando va a golpear al erizo, haciéndola reír. El erizo a menudo se desenrosca y huye. Además, los soldados-arco se mueven constantemente. Alicia concluye que es un juego difícil. Todos juegan a la vez, discutiendo y peleándose por los erizos. La Reina, furiosa, grita "¡Que le corten la cabeza a ese!" o "¡a esa!" al menos una vez por minuto. Alicia se siente incómoda, temiendo un encontronazo con la Reina y su costumbre de decapitar. Buscando cómo escabullirse, nota una extraña aparición en el aire: una sonrisa, que luego se convierte en el Gato de Cheshire. Se alegra de tener con quién hablar.`
+      },
+      {
+        title: "Capítulo IX: La historia de la Símil Tortuga",
+        content: `La Símil Tortuga suspira profundamente, se cubre los ojos con una aleta, mira a Alicia e intenta hablar, pero los sollozos la ahogan. El Grifo dice que parece que se atragantó con una espina y la sacude. Finalmente, la Símil Tortuga recupera la voz y, con lágrimas, dice que tal vez Alicia no haya vivido mucho en el fondo del mar ni le hayan presentado jamás a una langosta. Alicia empieza a decir que una vez probó... pero se controla y dice que no, nunca. "De modo que es posible que no tenga ni la menor idea de lo deliciosa que es la Cuadrilla de la Langosta", concluye la Símil Tortuga. Alicia pregunta qué clase de baile es.`
+      },
+      {
+        title: "Capítulo X: La Cuadrilla de la Langosta",
+        content: `El Grifo explica que primero hay que alinearse en la costa, en doble fila: focas, tortugas, salmones, etc. Luego, se sacan las medusas del camino, lo que lleva tiempo. Hay que avanzar dos pasos, cada uno con una langosta como pareja. Se cambian langostas y se retira en el mismo orden. Después, se tiran las langostas al mar lo más lejos posible y se nada tras ellas. Se da una voltereta en el mar, se cambian de langostas otra vez, se vuelve a tierra y fin de la primera figura. Las dos criaturas, que habían estado saltando, se sientan tristes y quietas. Alicia dice tímidamente que debe ser un baile muy lindo.`
+      },
+      {
+        title: "Capítulo XI: ¿Quién se robó las tartas?",
+        content: `Llegan al lugar del juicio. El Rey y la Reina de Corazones están sentados en su trono, rodeados por una gran multitud: pajaritos, animalitos y todo el mazo de cartas. La Sota de Corazones está de pie delante, encadenada, con un soldado a cada lado. Cerca del Rey, el Conejo Blanco sostiene una trompeta y un rollo de pergamino. En el centro del tribunal hay una mesa con una gran fuente de tartas que parecen tan ricas que a Alicia le da apetito. Desea que el juicio termine pronto para el refrigerio, pero empieza a mirar alrededor para pasar el tiempo.`
+      },
+      {
+        title: "Capítulo XII: El testimonio de Alicia",
+        content: `"¡Presente!", grita Alicia, olvidando cuánto ha crecido, y al ponerse de pie bruscamente, vuelca el estrado del jurado con el borde de su pollera. Todos miran a Alicia. La Reina pregunta con severidad quién es, dirigiéndose a la Sota, que solo se inclina y sonríe. "¡Idiota!", dice la Reina y pregunta a Alicia su nombre. "Me llamo Alicia, para servir a Su Majestad", responde Alicia, pensando para sus adentros que no son más que un mazo de cartas y no debe temerles. La Reina pregunta quiénes son los que están tirados junto al rosal (los jardineros boca abajo, indistinguibles). Alicia, sorprendida de su propia audacia, responde que cómo podría saberlo, que no es asunto suyo. La Reina se pone roja de rabia y grita: "¡Que le corten la cabeza! ¡Que le corten...!". "¡Qué disparate!", dice Alicia en voz alta y resuelta, y la Reina calla. El Rey, tímido, le pide consideración, diciendo que es solo una niña. La Reina, enojada, le ordena a la Sota que los dé vuelta. La Sota lo hace con un pie. "¡De pie!", grita la Reina. Los tres jardineros se levantan de un salto y hacen reverencias. "¡Acaben con eso! ¡Me marean!", ruge la Reina y, volviéndose al rosal, pregunta qué anduvieron haciendo. Dos, arrodillado humildemente, dice que estaban tratando... "¡Ya veo!", dice la Reina. "¡Que les corten la cabeza!".`
+      }
+    ];
+
+    // Datos de personajes
+    const characters = [
+      {
+        name: "Alicia",
+        image: "https://preview.reve.art/app/3659b2ad-ca1f-4ca1-8eb6-e0eb8ff3ecd1 ",
+        description: "Curiosa, valiente y soñadora. Su viaje al País de las Maravillas cambia su forma de ver el mundo."
+      },
+      {
+        name: "Conejo Blanco",
+        image: "https://preview.reve.art/api/project/3ce1508b-7256-460b-8526-80b44a674a33/image/7dad98e9-e004-4e1c-b5ff-09656040084a/url/filename/7dad98e9-e004-4e1c-b5ff-09656040084a?fit=contain&width=512 ",
+        description: "Apresurado, elegante y siempre consultando su reloj. Es el primer personaje que guía a Alicia a la aventura."
+      },
+      {
+        name: "Oruga Azul",
+        image: "https://picsum.photos/seed/oruga/200/200 ",
+        description: "Sentada sobre un hongo, fuma tranquilamente y le ofrece consejos crípticos a Alicia sobre cómo cambiar de tamaño."
+      },
+      {
+        name: "Gato de Cheshire",
+        image: "https://picsum.photos/seed/cheshire/200/200 ",
+        description: "Sonríe constantemente y puede hacerse invisible, dejando solo su sonrisa flotando en el aire."
+      },
+      {
+        name: "Reina de Corazones",
+        image: "https://picsum.photos/seed/reina/200/200 ",
+        description: "Autoritaria y temperamental. Siempre ordena: ¡Que le corten la cabeza!"
+      },
+      {
+        name: "Sombrerero Loco",
+        image: "https://picsum.photos/seed/sombrero/200/200 ",
+        description: "Amante del té eterno y de acertijos imposibles. Vive con la Liebre de Marzo y el Lirón."
+      }
+    ];
+
+    // Funciones del libro
+    let currentPage = 0;
+    const bookTitle = document.getElementById('chapter-title');
+    const bookContent = document.getElementById('chapter-content');
+    const pageInfo = document.getElementById('page-info');
+    const prevBtn = document.getElementById('prev-chapter');
+    const nextBtn = document.getElementById('next-chapter');
+
+    function showChapter(index) {
+      const chapter = storyChapters[index];
+      bookTitle.textContent = chapter.title;
+      bookContent.textContent = chapter.content;
+      pageInfo.textContent = `Página ${index + 1} de ${storyChapters.length}`;
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === storyChapters.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        showChapter(currentPage);
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < storyChapters.length - 1) {
+        currentPage++;
+        showChapter(currentPage);
+      }
+    });
+
+    showChapter(currentPage);
+
+    // Mostrar personajes
+    const charactersGrid = document.getElementById('characters-grid');
+    characters.forEach(char => {
+      const card = document.createElement('div');
+      card.className = 'character-card';
+      card.innerHTML = `
+        <img src="${char.image}" alt="${char.name}" />
+        <h3>${char.name}</h3>
+        <p>${char.description}</p>
+      `;
+      charactersGrid.appendChild(card);
+    });
+
+    // Navegación entre secciones
+    const sections = document.querySelectorAll('main section');
+    const navButtons = document.querySelectorAll('nav button');
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        navButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        sections.forEach(sec => sec.classList.remove('active'));
+        document.getElementById(btn.dataset.section).classList.add('active');
+      });
+    });
+
+    // Reproducir música
+    const audio = document.getElementById('background-music');
+    audio.volume = 0.3;
+    audio.play().catch(e => console.log('Error de auto-reproducción:', e));
+
+    // Efectos decorativos
+    const decoration = document.getElementById('decoration');
+    for (let i = 0; i < 20; i++) {
+      const dot = document.createElement('div');
+      dot.style.top = `${Math.random() * 100}%`;
+      dot.style.left = `${Math.random() * 100}%`;
+      dot.style.width = dot.style.height = `${Math.random() * 100 + 50}px`;
+      dot.style.background = `radial-gradient(circle at center, rgba(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, 0.3), transparent 70%)`;
+      dot.style.animationDuration = `${Math.random() * 10 + 10}s`;
+      decoration.appendChild(dot);
+    }
+  </script>
 </body>
 </html>
