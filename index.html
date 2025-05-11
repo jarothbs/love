@@ -14,10 +14,32 @@
       overflow-x: hidden;
     }
 
+    /* Animaciones */
+    @keyframes bounce-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Cabecera */
     header {
       text-align: center;
       padding: 2rem 1rem;
       position: relative;
+    }
+
+    header img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #ffb6c1;
+      box-shadow: 0 0 15px #fff3;
+      animation: bounce-slow 3s infinite;
     }
 
     header h1 {
@@ -26,8 +48,16 @@
       background: linear-gradient(to right, #ff6ec4, #7873f5);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      margin-top: 1rem;
     }
 
+    header p {
+      font-style: italic;
+      margin-top: 0.5rem;
+      color: #fff;
+    }
+
+    /* Navegación */
     nav {
       background: #5e218d;
       display: flex;
@@ -44,6 +74,12 @@
       font-size: 1rem;
       cursor: pointer;
       position: relative;
+      transition: all 0.3s ease;
+    }
+
+    nav button:hover,
+    nav button.active {
+      color: #fff;
     }
 
     nav button::after {
@@ -62,6 +98,7 @@
       width: 100%;
     }
 
+    /* Contenido principal */
     main {
       max-width: 1000px;
       margin: 2rem auto;
@@ -125,6 +162,11 @@
       border-radius: 1rem;
       padding: 1rem;
       text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .character-card:hover {
+      transform: scale(1.05);
     }
 
     .character-card img {
@@ -142,6 +184,7 @@
       color: rgba(255, 255, 255, 0.6);
     }
 
+    /* Decoración visual */
     .decoration {
       position: fixed;
       width: 100vw;
@@ -150,18 +193,12 @@
       z-index: 0;
     }
 
-    .decoration div {
+    .dot {
       position: absolute;
       border-radius: 50%;
       opacity: 0.2;
       mix-blend-mode: overlay;
       animation: float 15s infinite ease-in-out;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
     }
   </style>
 </head>
@@ -172,6 +209,8 @@
 
   <!-- Cabecera -->
   <header>
+    <img src="https://github.com/jarothbs/love/blob/proyecto/alicia2.png?raw=true "
+         alt="Alicia" />
     <h1>Alicia en el País de las Maravillas</h1>
     <p>Para mi amor más especial</p>
   </header>
@@ -192,7 +231,7 @@
         Esta página está creada con amor para ti, inspirada en “Alicia en el País de las Maravillas”, un cuento que nos recuerda que la imaginación no tiene límites. Aquí podrás leer el libro completo, conocer a sus personajes y disfrutar de un ambiente romántico y mágico.
       </p>
       <p class="mt-4">
-        Este es nuestro pequeño País de las Maravillas, hecho con cariño para ti. Espero que te sientas tan especial aquí como tú me haces sentir a mí cada día.
+        Este es nuestro pequeño País de las Maravillas, hecho con cariño para ti. Espero que te sientas tan especial aquí como tú me haces sentir a mí cada día 💗💙.
       </p>
     </section>
 
@@ -221,15 +260,13 @@
 
   <!-- Pie de página -->
   <footer>
-    <p>Una experiencia diseñada con amor para ti, mi Infinito💚💜.</p>
+    <p>Una experiencia diseñada con amor para ti, mi Infinito 💕.</p>
     <p>© 2025 El mundo de nuestra imaginación</p>
   </footer>
 
-  <!-- Música de fondo -->
-  <audio id="background-music" loop autoplay>
-    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Music_for_Videos/Sarah_Jessica/sounds_from_a_parallel_world/Sarah_Jessica_-_01_-_Magical_Moments.mp3 " type="audio/mp3" />
-    Tu navegador no admite reproducción de audio.
-  </audio>
+  <!-- Canciones -->
+  <audio id="background-music-1" src="https://github.com/jarothbs/love/raw/proyecto/Timeless.mp3 "></audio>
+  <audio id="background-music-2" src="https://github.com/jarothbs/love/raw/proyecto/The%20Dreamscape.mp3 "></audio>
 
   <!-- Script del libro y personajes -->
   <script>
@@ -245,118 +282,109 @@
       },
       {
         title: "Capítulo III: Una carrera de comité y una historia que trae cola",
-        content: `Mientras nada en el charco, Alicia piensa que se ha caído en el mar y podría volver en tren. Se da cuenta de que está en sus propias lágrimas y se siente castigada. Oye algo zambullirse y descubre que es un Ratón que también resbaló. Intenta hablarle cortésmente en inglés ("¡Oh, Ratón! ¿Conoce usted el modo de salir de este charco?") e incluso en francés ("Où est ma chatte?"), recordando la gramática latina de su hermano. La mención de "chatte" (gata) asusta al Ratón. Alicia se disculpa y luego, sin pensar, habla de su gata Dinah y su habilidad para cazar ratones, lo que ofende profundamente al Ratón. Intenta cambiar de tema hablando de un perrito, pero vuelve a mencionar su utilidad para matar ratas, ofendiendo de nuevo al Ratón, que se aleja nadando. Alicia lo llama y le promete no hablar más de gatos ni perros. El Ratón regresa, pálido y tembloroso, y dice que les contará su historia en la orilla para que entiendan su odio.\n\nLlegan a la orilla junto con un Pato, un Dodo, un Loro, un Aguilucho y otras criaturas extrañas, todos mojados y enfadados. Discuten cómo secarse. Alicia habla con ellos con naturalidad. El Ratón propone solemnemente una "carrera de comité". Explica que se traza una pista circular y todos empiezan y terminan de correr cuando quieren. Después de media hora, el Dodo declara terminada la carrera y, tras pensarlo, anuncia que todos han ganado y deben tener premio. Alicia, a instancias del Dodo, reparte confites de su bolsillo como premios. El Ratón señala que Alicia también debe tener un premio. El Dodo le pide a Alicia lo que tiene en el bolsillo (un dedal) y se lo entrega solemnemente como premio. Todos vitorean.\n\nLuego comen los confites, con algo de alboroto. Le piden al Ratón que cuente algo más. Alicia le recuerda su promesa de contar su historia y por qué odia a los "G y a los P". El Ratón suspira que es "una larga y triste historia, ¡una historia que trae cola!". Alicia mira la cola del Ratón y se imagina el poema en forma de cola sobre "Furia" y un ratón. El Ratón la acusa de no prestar atención. Alicia, pensando que se refiere a nudos en su cola, se ofrece ayudar a deshacerlos. El Ratón se ofende y se marcha. Los demás animales también se van cuando Alicia vuelve a mencionar a Dinah y su habilidad para cazar pájaros. Alicia se queda sola y triste. Oye pasitos y espera que el Ratón haya regresado.`
+        content: `Mientras nada en el charco, Alicia piensa que se ha caído en el mar y podría volver en tren. Se da cuenta de que está en sus propias lágrimas y se siente castigada. Oye algo zambullirse y descubre que es un Ratón que también resbaló. Intenta hablarle cortésmente en inglés ("¡Oh, Ratón! ¿Conoce usted el modo de salir de este charco?") e incluso en francés ("Où est ma chatte?"), recordando la gramática latina de su hermano. La mención de "chatte" (gata) asusta al Ratón. Alicia se disculpa y luego, sin pensar, habla de su gata Dinah y su habilidad para cazar ratones, lo que ofende profundamente al Ratón. Intenta cambiar de tema hablando de un perrito, pero vuelve a mencionar su utilidad para matar ratas, ofendiendo de nuevo al Ratón, que se aleja nadando. Alicia lo llama y le promete no hablar más de gatos ni perros. El Ratón regresa, pálido y tembloroso, y dice que les contará su historia en la orilla para que entiendan su odio.\n\nLlegan a la orilla junto con un Pato, un Dodo, un Loro, un Aguilucho y otras criaturas extrañas, todos mojados y enfadados. Discuten cómo secarse. Alicia habla con ellos con naturalidad. El Ratón propone solemnemente una "carrera de comité". Explica que se traza una pista circular y todos empiezan y terminan de correr cuando quieren. Después de media hora, el Dodo declara terminada la carrera y, tras pensarlo, anuncia que todos han ganado y deben tener premio. Alicia, a instancias del Dodo, reparte confites de su bolsillo como premios. El Ratón señala que Alicia también debe tener un premio. El Dodo le pide a Alicia lo que tiene en el bolsillo (un dedal) y se lo entrega solemnemente como premio. Todos vitorean.`
       },
       {
         title: "Capítulo IV: El Conejo manda un recado",
-        content: `Es el Conejo Blanco, que regresa trotando y buscando ansiosamente el abanico y los guantes que perdió, temiendo la furia de la Duquesa. Alicia también busca, pero el vestíbulo y la mesa han desaparecido. El Conejo ve a Alicia y, confundiéndola con su sirvienta Mary Ann, le ordena con enojo que corra a su casa a buscarle un par de guantes y un abanico. Alicia, demasiado asustada para explicar el error, corre en la dirección indicada.\n\nLlega a una casita prolija con una placa que dice "C. Blanco". Entra sin golpear y sube las escaleras, temiendo encontrarse con la verdadera Mary Ann. Se imagina a su gata Dinah dándole órdenes. Encuentra una piecita con un abanico y varios pares de guantecitos blancos sobre una mesada. Recoge un par y el abanico, y está por irse cuando ve una botellita cerca del espejo, sin etiqueta. Decide beberla, esperando que le ocurra algo interesante.\n\nLa bebida la hace crecer muchísimo, más rápido de lo esperado. Antes de terminar la mitad, su cabeza golpea el cielorraso y tiene que agacharse. Deja la botella, deseando no haber bebido tanto, pues ya no puede salir por la puerta. Sigue creciendo y tiene que arrodillarse, luego tirarse al suelo con un codo contra la puerta y el otro brazo rodeando su cabeza. Como último recurso, saca un brazo por la ventana y un pie por la chimenea. La botellita agota su efecto y deja de crecer, pero está muy incómoda y desdichada. Piensa que era mucho más lindo en casa, sin tantos cambios de tamaño ni órdenes de conejos. Se pregunta si alguna vez se hará más vieja o si siempre tendrá lecciones.`
+        content: `Es el Conejo Blanco, que regresa trotando y buscando ansiosamente el abanico y los guantes que perdió, temiendo la furia de la Duquesa. Alicia también busca, pero el vestíbulo y la mesa han desaparecido. El Conejo ve a Alicia y, confundiéndola con su sirvienta Mary Ann, le ordena con enojo que corra a su casa a buscarle un par de guantes y un abanico. Alicia, demasiado asustada para explicar el error, corre en la dirección indicada.\n\nLlega a una casita prolija con una placa que dice "C. Blanco". Entra sin golpear y sube las escaleras, temiendo encontrarse con la verdadera Mary Ann. Se imagina a su gata Dinah dándole órdenes. Encuentra una piecita con un abanico y varios pares de guantecitos blancos sobre una mesada. Recoge un par y el abanico, y está por irse cuando ve una botellita cerca del espejo, sin etiqueta. Decide beberla, esperando que le ocurra algo interesante.\n\nLa bebida la hace crecer muchísimo, más rápido de lo esperado. Antes de terminar la mitad, su cabeza golpea el cielorraso y tiene que agacharse. Deja la botella, deseando no haber bebido tanto, pues ya no puede salir por la puerta. Sigue creciendo y tiene que arrodillarse, luego tirarse al suelo con un codo contra la puerta y el otro brazo rodeando su cabeza. Como último recurso, saca un brazo por la ventana y un pie por la chimenea. La botellita agota su efecto y deja de crecer, pero está muy incómoda y desdichada. Piensa que era mucho más lindo en casa, sin tantos cambios de tamaño ni órdenes de conejos.`
       },
       {
         title: "Capítulo V: Consejo de una oruga",
-        content: `Alicia, aunque asustada por el cachorro gigantesco, intenta silbarle y le extiende una ramita. El cachorro juega con la ramita y Alicia se esconde detrás de un cardo para no ser aplastada. Logra escapar cuando el cachorro se cansa. Se apoya en un botón de oro, recordando que debe crecer de nuevo. Cerca hay un hongo enorme, casi tan alto como ella. Se para en puntas de pie y ve a una gran Oruga azul sentada encima, con los brazos cruzados, fumando un largo narguile tranquilamente.\n\nLa Oruga y Alicia se miran en silencio. Finalmente, la Oruga pregunta con voz lánguida: "¿Quién eres tú?". Alicia responde tímidamente que no está segura, que sabía quién era por la mañana pero cree haber cambiado varias veces. La Oruga le pide que se explique, pero Alicia dice que no puede porque no es ella misma y pasar por tantos tamaños en un día la confunde. La Oruga no lo considera confuso. Alicia sugiere que tal vez la Oruga se sienta rara cuando se convierta en crisálida y luego en mariposa. La Oruga lo niega y vuelve a preguntar con desprecio quién es Alicia.`
+        content: `Alicia, aunque asustada por el cachorro gigantesco, intenta silbarle y le extiende una ramita. El cachorro juega con la ramita y Alicia se esconde detrás de un cardo para no ser aplastada. Logra escapar cuando el cachorro se cansa. Se apoya en un botón de oro, recordando que debe crecer de nuevo. Cerca hay un hongo enorme, casi tan alto como ella. Se pone de puntillas y ve a una Oruga azul sentada encima, con los brazos cruzados, fumando tranquilamente un largo narguile.\n\nLa Oruga y Alicia se miran en silencio. Finalmente, la Oruga pregunta con voz lánguida: "¿Quién eres tú?". Alicia responde tímidamente que no está segura, que sabía quién era por la mañana pero cree haber cambiado varias veces. La Oruga le pide que se explique, pero Alicia dice que no puede porque no es ella misma y pasar por tantos tamaños en un día la confunde. La Oruga no lo considera confuso. Alicia sugiere que tal vez la Oruga se sienta rara al convertirse en crisálida y luego en mariposa. La Oruga lo niega y vuelve a preguntar con desprecio quién es Alicia.`
       },
       {
         title: "Capítulo VI: Marrano y pimienta",
-        content: `Alicia observa la casa durante un par de minutos. De pronto, un lacayo de librea con cara de pez sale del bosque y golpea la puerta. Otro lacayo de librea, con cara de rana, abre. Ambos llevan pelucas empolvadas. El Lacayo-Pez entrega una gran carta al Lacayo-Rana, diciendo solemnemente: "Para la Duquesa. Una invitación para jugar al croquet de parte de la Reina". El Lacayo-Rana repite la frase invirtiendo el orden. Ambos se inclinan y sus rizos se enredan. Alicia ríe tanto que tiene que volver al bosque. Cuando regresa, el Lacayo-Pez se ha ido y el Lacayo-Rana está sentado en el suelo mirando al cielo.\n\nAlicia recoge al bebé con dificultad; es una criatura de formas extrañas que estira brazos y piernas como una estrella de mar y resopla como una locomotora. Encuentra el modo de sostenerlo (retorciéndolo en un nudo y sujetándole oreja y pie) y lo saca al aire libre, pensando que lo matarían si lo dejaba. El bebé gruñe. Alicia le dice que no es modo de expresarse. El bebé vuelve a gruñir. Alicia nota que tiene una nariz muy respingada, como un hocico, y ojos pequeños. Piensa que tal vez solo solloza, pero no hay lágrimas. Le advierte seriamente que si piensa convertirse en un marrano, no tendrá nada más que ver con él. El bebé solloza o gruñe. Siguen en silencio. Alicia se pregunta qué hará con él al llegar a casa cuando la criatura gruñe tan fuerte que Alicia la mira alarmada. No hay duda: es un marrano. Alicia piensa que es ridículo seguir llevándolo. Deposita a la criaturita en el suelo y se siente aliviada al verla trotar hacia el bosque. Piensa que de niño habría sido feo, pero como cerdito es lindo. Se sobresalta al ver al Gato de Cheshire sentado en una rama cercana.`
+        content: `Alicia observa la casa durante un par de minutos. De pronto, un lacayo de librea con cara de pez sale del bosque y golpea la puerta. Otro lacayo de librea, con cara de rana, abre. Ambos llevan pelucas empolvadas. El Lacayo-Pez entrega una carta al Lacayo-Rana, diciendo solemnemente: "Para la Duquesa. Una invitación para jugar al croquet de parte de la Reina". El Lacayo-Rana repite la frase invirtiendo el orden. Ambos se inclinan y sus rizos se enredan. Alicia ríe tanto que tiene que volver al bosque. Cuando regresa, el Lacayo-Pez se ha ido y el Lacayo-Rana está sentado en el suelo mirando al cielo.\n\nAlicia recoge al bebé con dificultad; es una criatura de formas extrañas que estira brazos y piernas como una estrella de mar y resopla como una locomotora. Encuentra el modo de sostenerlo (retorciéndolo en un nudo y sujetándole oreja y pie) y lo saca al aire libre, pensando que lo matarían si lo dejaba. El bebé gruñe. Alicia le dice que no es modo de expresarse. El bebé vuelve a gruñir. Alicia nota que tiene una nariz muy respingada, como un hocico, y ojos pequeños. Piensa que tal vez solo solloza, pero no hay lágrimas. Le advierte seriamente que si piensa convertirse en cerdo, no tendrá nada más que ver con él. El bebé vuelve a gruñir. Siguen en silencio. Alicia se pregunta qué hará con él al llegar a casa cuando la criatura gruñe fuerte. No hay duda: es un marrano. Alicia piensa que es ridículo seguir cargándolo. Deposita al animal en el suelo y se siente aliviada al verlo trotar hacia el bosque.`
       },
       {
         title: "Capítulo VII: Una merienda de locos",
-        content: `Frente a la casa, bajo un árbol, hay una mesa servida. La Liebre de Marzo y el Sombrerero toman el té. Entre ellos, un Lirón duerme profundamente, usado como almohadón por los otros dos, que conversan por encima de su cabeza. Alicia piensa que es incómodo para el Lirón. Aunque la mesa es grande, los tres están apiñados en una punta. Al ver llegar a Alicia, gritan: "¡No hay lugar! ¡No hay lugar!". Alicia, indignada, responde que hay muchísimo lugar y se sienta en un gran sillón.\n\nLa Liebre de Marzo la anima a servirse vino. Alicia no ve más que té. "No lo hay", dice la Liebre. Alicia se enoja porque fue incorrecto ofrecérselo. La Liebre replica que tampoco fue correcto sentarse sin invitación. Alicia argumenta que la mesa estaba servida para más de tres. El Sombrerero, tras observarla con curiosidad, le dice que le anda faltando un corte de pelo. Alicia, severa, le dice que no haga observaciones personales, que es grosero. El Sombrerero abre grandes los ojos y pregunta: "¿En qué se parecen un cuervo y un escritorio?". Alicia se alegra de que empiecen las adivinanzas y cree poder adivinarla.`
+        content: `Frente a la casa, bajo un árbol, hay una mesa servida. La Liebre de Marzo y el Sombrerero toman el té. Entre ellos, un Lirón duerme profundamente, usado como almohadón. Aunque la mesa es grande, están apiñados en una punta. Al ver a Alicia, gritan: "¡No hay lugar!". Alicia, indignada, responde que hay muchísimo lugar y se sienta en un sillón.\n\nLa Liebre de Marzo la anima a servirse vino. Alicia no ve más que té. "No lo hay", dice la Liebre. Alicia se enoja porque fue incorrecto ofrecérselo. La Liebre replica que tampoco fue correcto sentarse sin invitación. Alicia argumenta que la mesa estaba servida para más de tres. El Sombrerero, tras observarla con curiosidad, le dice que le falta un corte de pelo. Alicia, severa, le pide no hacer observaciones personales. El Sombrerero pregunta: "¿En qué se parecen un cuervo y un escritorio?". Alicia se alegra de que empiecen las adivinanzas.`
       },
       {
         title: "Capítulo VIII: La cancha de croquet de la Reina",
-        content: `Alicia nunca había visto una cancha de croquet tan rara: llena de lomitas y pozos; las pelotas eran erizos vivos y los palos, flamencos vivos; los soldados se doblaban para formar los arcos. Alicia tiene dificultades para manejar su flamenco, que suele girar la cabeza para mirarla justo cuando va a golpear al erizo, haciéndola reír. El erizo a menudo se desenrosca y huye. Además, los soldados-arco se mueven constantemente. Alicia concluye que es un juego difícil. Todos juegan a la vez, discutiendo y peleándose por los erizos. La Reina, furiosa, grita "¡Que le corten la cabeza a ese!" o "¡a esa!" al menos una vez por minuto. Alicia se siente incómoda, temiendo un encontronazo con la Reina y su costumbre de decapitar. Buscando cómo escabullirse, nota una extraña aparición en el aire: una sonrisa, que luego se convierte en el Gato de Cheshire. Se alegra de tener con quién hablar.`
+        content: `Alicia nunca había visto una cancha de croquet tan rara: las pelotas eran erizos vivos, los palos flamencos vivos, y los soldados formaban los arcos. Alicia tiene dificultades para manejar su flamenco, que suele girar la cabeza justo cuando va a golpear al erizo. El erizo se desenrosca y huye. Además, los soldados-arco se mueven constantemente. Todos juegan a la vez, discutiendo y peleándose por los erizos. La Reina, furiosa, grita: "¡Que le corten la cabeza!"\n\nAlicia se siente incómoda, temiendo un encontronazo con la Reina y su costumbre decapitadora. Busca cómo escapar y nota una extraña aparición: una sonrisa flotando en el aire. Luego se convierte en el Gato de Cheshire. Alicia se alegra de tener con quien hablar.`
       },
       {
         title: "Capítulo IX: La historia de la Símil Tortuga",
-        content: `La Símil Tortuga suspira profundamente, se cubre los ojos con una aleta, mira a Alicia e intenta hablar, pero los sollozos la ahogan. El Grifo dice que parece que se atragantó con una espina y la sacude. Finalmente, la Símil Tortuga recupera la voz y, con lágrimas, dice que tal vez Alicia no haya vivido mucho en el fondo del mar ni le hayan presentado jamás a una langosta. Alicia empieza a decir que una vez probó... pero se controla y dice que no, nunca. "De modo que es posible que no tenga ni la menor idea de lo deliciosa que es la Cuadrilla de la Langosta", concluye la Símil Tortuga. Alicia pregunta qué clase de baile es.`
+        content: `La Símil Tortuga suspira profundamente, se cubre los ojos con una aleta y, con lágrimas, dice que tal vez Alicia no haya vivido mucho en el fondo del mar ni haya conocido a una langosta. Alicia se controla y dice que no, nunca. "De modo que no tendrás ni la menor idea de lo deliciosa que es la Cuadrilla de la Langosta", concluye la Tortuga. Alicia pregunta qué clase de baile es.\n\nEl Grifo explica que primero se alinean en la costa en doble fila: focas, tortugas, salmones... Luego se sacan las medusas del camino, se avanzan dos pasos con una langosta como pareja, se cambian langostas y se retiran en el mismo orden. Después, se lanzan las langostas al mar lo más lejos posible, se nada tras ellas, se dan volteretas, se cambian de langosta otra vez y se vuelve a tierra. Las dos criaturas se sientan tristes y quietas. Alicia dice tímidamente que debe ser un baile muy lindo.`
       },
       {
         title: "Capítulo X: La Cuadrilla de la Langosta",
-        content: `El Grifo explica que primero hay que alinearse en la costa, en doble fila: focas, tortugas, salmones, etc. Luego, se sacan las medusas del camino, lo que lleva tiempo. Hay que avanzar dos pasos, cada uno con una langosta como pareja. Se cambian langostas y se retira en el mismo orden. Después, se tiran las langostas al mar lo más lejos posible y se nada tras ellas. Se da una voltereta en el mar, se cambian de langostas otra vez, se vuelve a tierra y fin de la primera figura. Las dos criaturas, que habían estado saltando, se sientan tristes y quietas. Alicia dice tímidamente que debe ser un baile muy lindo.`
+        content: `El Grifo explica que primero hay que alinearse en la costa en doble fila: focas, tortugas, salmones... Luego se sacan las medusas del camino, se avanzan dos pasos con una langosta como pareja, se cambian langostas y se retiran en el mismo orden. Después, se lanzan las langostas al mar lo más lejos posible, se nada tras ellas, se dan volteretas, se cambian de langosta otra vez y se vuelve a tierra. Las dos criaturas, que habían estado saltando, se sientan tristes y quietas. Alicia dice tímidamente que debe ser un baile muy lindo.`
       },
       {
         title: "Capítulo XI: ¿Quién se robó las tartas?",
-        content: `Llegan al lugar del juicio. El Rey y la Reina de Corazones están sentados en su trono, rodeados por una gran multitud: pajaritos, animalitos y todo el mazo de cartas. La Sota de Corazones está de pie delante, encadenada, con un soldado a cada lado. Cerca del Rey, el Conejo Blanco sostiene una trompeta y un rollo de pergamino. En el centro del tribunal hay una mesa con una gran fuente de tartas que parecen tan ricas que a Alicia le da apetito. Desea que el juicio termine pronto para el refrigerio, pero empieza a mirar alrededor para pasar el tiempo.`
+        content: `Llegan al lugar del juicio. El Rey y la Reina de Corazones están sentados en su trono, rodeados por una multitud: pájaros, animalitos y todo el mazo de cartas. La Sota de Corazones está de pie frente a ellos, encadenada. Cerca del Rey, el Conejo Blanco sostiene una trompeta y un rollo de pergamino. En el centro del tribunal hay una mesa con una gran fuente de tartas que parecen tan ricas que a Alicia le da apetito. Quiere que el juicio termine pronto para el refrigerio, pero empieza a mirar alrededor para pasar el tiempo.`
       },
       {
         title: "Capítulo XII: El testimonio de Alicia",
-        content: `"¡Presente!", grita Alicia, olvidando cuánto ha crecido, y al ponerse de pie bruscamente, vuelca el estrado del jurado con el borde de su pollera. Todos miran a Alicia. La Reina pregunta con severidad quién es, dirigiéndose a la Sota, que solo se inclina y sonríe. "¡Idiota!", dice la Reina y pregunta a Alicia su nombre. "Me llamo Alicia, para servir a Su Majestad", responde Alicia, pensando para sus adentros que no son más que un mazo de cartas y no debe temerles. La Reina pregunta quiénes son los que están tirados junto al rosal (los jardineros boca abajo, indistinguibles). Alicia, sorprendida de su propia audacia, responde que cómo podría saberlo, que no es asunto suyo. La Reina se pone roja de rabia y grita: "¡Que le corten la cabeza! ¡Que le corten...!". "¡Qué disparate!", dice Alicia en voz alta y resuelta, y la Reina calla. El Rey, tímido, le pide consideración, diciendo que es solo una niña. La Reina, enojada, le ordena a la Sota que los dé vuelta. La Sota lo hace con un pie. "¡De pie!", grita la Reina. Los tres jardineros se levantan de un salto y hacen reverencias. "¡Acaben con eso! ¡Me marean!", ruge la Reina y, volviéndose al rosal, pregunta qué anduvieron haciendo. Dos, arrodillado humildemente, dice que estaban tratando... "¡Ya veo!", dice la Reina. "¡Que les corten la cabeza!".`
+        content: `"¡Presente!", grita Alicia, olvidando cuánto ha crecido, y al ponerse de pie bruscamente, vuelca el estrado del jurado con el borde de su pollera. Todos miran a Alicia. La Reina pregunta con severidad quién es, dirigiéndose a la Sota, que solo se inclina y sonríe. "¡Idiota!", dice la Reina y pregunta a Alicia su nombre. "Me llamo Alicia, para servir a Su Majestad", responde Alicia, pensando que no son más que cartas y no debe temerles. La Reina pregunta quiénes son los que están tirados junto al rosal (los jardineros boca abajo). Alicia, sorprendida de su propia audacia, responde que cómo podría saberlo, que no es asunto suyo. La Reina se pone roja de rabia y grita: "¡Que le corten la cabeza! ¡Que le corten...!". "¡Qué disparate!", dice Alicia en voz alta y resuelta, y la Reina calla. El Rey, tímido, le pide consideración, diciendo que es solo una niña. La Reina ordena a la Sota que dé vueltas a los jardineros. Los tres se levantan, hacen reverencias y corren.`
       }
     ];
 
-    // Datos de personajes
     const characters = [
       {
         name: "Alicia",
-        image: "https://github.com/jarothbs/love/blob/proyecto/alicia.png?raw=true",
+        image: "https://github.com/jarothbs/love/blob/proyecto/alicia.png?raw=true ",
         description: "Curiosa, valiente y soñadora. Su viaje al País de las Maravillas cambia su forma de ver el mundo."
       },
       {
         name: "Conejo Blanco",
-        image: "https://github.com/jarothbs/love/blob/proyecto/conejo.png?raw=true",
+        image: "https://github.com/jarothbs/love/blob/proyecto/conejo.png?raw=true ",
         description: "Apresurado, elegante y siempre consultando su reloj. Es el primer personaje que guía a Alicia a la aventura."
       },
       {
         name: "Oruga Azul",
-        image: "https://github.com/jarothbs/love/blob/proyecto/oruga.png?raw=true",
+        image: "https://github.com/jarothbs/love/blob/proyecto/oruga.png?raw=true ",
         description: "Sentada sobre un hongo, fuma tranquilamente y le ofrece consejos crípticos a Alicia sobre cómo cambiar de tamaño."
       },
       {
         name: "Gato de Cheshire",
-        image: "https://github.com/jarothbs/love/blob/proyecto/gato.png?raw=true",
+        image: "https://github.com/jarothbs/love/blob/proyecto/gato.png?raw=true ",
         description: "Sonríe constantemente y puede hacerse invisible, dejando solo su sonrisa flotando en el aire."
       },
       {
         name: "Reina de Corazones",
-        image: "https://github.com/jarothbs/love/blob/proyecto/reina.png?raw=true",
+        image: "https://github.com/jarothbs/love/blob/proyecto/reina.png?raw=true ",
         description: "Autoritaria y temperamental. Siempre ordena: ¡Que le corten la cabeza!"
       },
       {
         name: "Sombrerero Loco",
-        image: "https://github.com/jarothbs/love/blob/proyecto/sombrerero.png?raw=true",
+        image: "https://github.com/jarothbs/love/blob/proyecto/sombrerero.png?raw=true ",
         description: "Amante del té eterno y de acertijos imposibles. Vive con la Liebre de Marzo y el Lirón."
       }
     ];
 
-    // Funciones del libro
+    // Función para mostrar capítulo actual
     let currentPage = 0;
-    const bookTitle = document.getElementById('chapter-title');
-    const bookContent = document.getElementById('chapter-content');
-    const pageInfo = document.getElementById('page-info');
-    const prevBtn = document.getElementById('prev-chapter');
-    const nextBtn = document.getElementById('next-chapter');
+    const bookTitle = document.getElementById("chapter-title");
+    const bookContent = document.getElementById("chapter-content");
+    const pageInfo = document.getElementById("page-info");
+    const prevBtn = document.getElementById("prev-chapter");
+    const nextBtn = document.getElementById("next-chapter");
 
     function showChapter(index) {
-      const chapter = storyChapters[index];
-      bookTitle.textContent = chapter.title;
-      bookContent.textContent = chapter.content;
-      pageInfo.textContent = `Página ${index + 1} de ${storyChapters.length}`;
-      prevBtn.disabled = index === 0;
-      nextBtn.disabled = index === storyChapters.length - 1;
+      if (index >= 0 && index < storyChapters.length) {
+        const chapter = storyChapters[index];
+        bookTitle.textContent = chapter.title;
+        bookContent.textContent = chapter.content;
+        pageInfo.textContent = `Página ${index + 1} de ${storyChapters.length}`;
+        currentPage = index;
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === storyChapters.length - 1;
+      }
     }
 
-    prevBtn.addEventListener('click', () => {
-      if (currentPage > 0) {
-        currentPage--;
-        showChapter(currentPage);
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (currentPage < storyChapters.length - 1) {
-        currentPage++;
-        showChapter(currentPage);
-      }
-    });
+    prevBtn.addEventListener("click", () => showChapter(currentPage - 1));
+    nextBtn.addEventListener("click", () => showChapter(currentPage + 1));
 
     showChapter(currentPage);
 
     // Mostrar personajes
-    const charactersGrid = document.getElementById('characters-grid');
+    const charactersGrid = document.getElementById("characters-grid");
     characters.forEach(char => {
-      const card = document.createElement('div');
-      card.className = 'character-card';
+      const card = document.createElement("div");
+      card.className = "character-card";
       card.innerHTML = `
         <img src="${char.image}" alt="${char.name}" />
         <h3>${char.name}</h3>
@@ -366,27 +394,40 @@
     });
 
     // Navegación entre secciones
-    const sections = document.querySelectorAll('main section');
-    const navButtons = document.querySelectorAll('nav button');
+    const sections = document.querySelectorAll("main section");
+    const navButtons = document.querySelectorAll("nav button");
 
     navButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        navButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        sections.forEach(sec => sec.classList.remove('active'));
-        document.getElementById(btn.dataset.section).classList.add('active');
+      btn.addEventListener("click", () => {
+        navButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        sections.forEach(sec => sec.classList.remove("active"));
+        document.getElementById(btn.dataset.section).classList.add("active");
       });
     });
 
-    // Reproducir música
-    const audio = document.getElementById('background-music');
-    audio.volume = 0.3;
-    audio.play().catch(e => console.log('Error de auto-reproducción:', e));
+    // Reproducción automática de canciones una tras otra
+    const music1 = document.getElementById("background-music-1");
+    const music2 = document.getElementById("background-music-2");
 
-    // Efectos decorativos
-    const decoration = document.getElementById('decoration');
+    window.addEventListener("load", async () => {
+      try {
+        music1.volume = 0.3;
+        await music1.play();
+        music1.onended = () => {
+          music2.volume = 0.3;
+          music2.play().catch(() => {});
+        };
+      } catch (err) {
+        console.log("Error al iniciar música:", err);
+      }
+    });
+
+    // Efectos decorativos flotantes
+    const decoration = document.getElementById("decoration");
     for (let i = 0; i < 20; i++) {
-      const dot = document.createElement('div');
+      const dot = document.createElement("div");
+      dot.className = "dot";
       dot.style.top = `${Math.random() * 100}%`;
       dot.style.left = `${Math.random() * 100}%`;
       dot.style.width = dot.style.height = `${Math.random() * 100 + 50}px`;
