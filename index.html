@@ -3,237 +3,535 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alicia en el País de las Maravillas</title>
+  <title>Alicia en el País de las Maravillas ✨</title>
   <style>
-    /* Estilos generales */
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(135deg, #2c003e 0%, #4d007d 50%, #004d40 100%);
-      color: white;
-      overflow-x: hidden;
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@400;600;700&display=swap');
+    
+    /* Variables CSS para consistencia */
+    :root {
+      --primary-purple: #6b46c1;
+      --secondary-pink: #ec4899;
+      --accent-gold: #f59e0b;
+      --text-light: rgba(255, 255, 255, 0.9);
+      --text-dim: rgba(255, 255, 255, 0.7);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Crimson Text', serif;
+      background: linear-gradient(135deg, 
+        #1a0b2e 0%, 
+        #16213e 25%, 
+        #0f3460 50%, 
+        #533a7d 75%, 
+        #4a1a5c 100%);
+      color: var(--text-light);
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Fondo animado mejorado */
+    .magical-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(135deg, 
+        #1a0b2e 0%, 
+        #16213e 25%, 
+        #0f3460 50%, 
+        #533a7d 75%, 
+        #4a1a5c 100%);
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      animation: float-particle 15s infinite linear;
+    }
+
+    @keyframes float-particle {
+      0% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0);
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(1);
+      }
+    }
+
+    /* Header mejorado */
     header {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 3rem 1rem;
       position: relative;
+      background: linear-gradient(rgba(0,0,0,0.3), transparent);
+      backdrop-filter: blur(10px);
+    }
+
+    .title-container {
+      position: relative;
+      display: inline-block;
     }
 
     header h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      background: linear-gradient(to right, #ff6ec4, #7873f5);
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      background: linear-gradient(45deg, #ff6ec4, #7c3aed, #06b6d4, #10b981);
+      background-size: 400% 400%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradient-shift 3s ease-in-out infinite;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 30px rgba(255, 110, 196, 0.5);
     }
 
+    @keyframes gradient-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .subtitle {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: var(--text-dim);
+      margin-top: 0.5rem;
+      animation: sparkle 2s ease-in-out infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.7; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    /* Navegación mejorada */
     nav {
-      background: #5e218d;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
       display: flex;
       justify-content: center;
       padding: 1rem;
-      gap: 1.5rem;
+      gap: 2rem;
       flex-wrap: wrap;
+      margin: 0 1rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-soft);
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
     }
 
     nav button {
-      background: none;
-      border: none;
-      color: white;
+      background: linear-gradient(135deg, var(--glass-bg), rgba(255,255,255,0.05));
+      border: 1px solid var(--glass-border);
+      color: var(--text-light);
       font-size: 1rem;
+      font-family: inherit;
       cursor: pointer;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
       position: relative;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(10px);
+      font-weight: 600;
     }
 
-    nav button::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background: #fff;
-      transition: width 0.3s ease;
+    nav button:hover {
+      background: linear-gradient(135deg, var(--primary-purple), var(--secondary-pink));
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(107, 70, 193, 0.4);
     }
 
-    nav button:hover::after,
-    nav button.active::after {
-      width: 100%;
+    nav button.active {
+      background: linear-gradient(135deg, var(--primary-purple), var(--secondary-pink));
+      box-shadow: 0 5px 15px rgba(107, 70, 193, 0.5);
     }
 
+    /* Contenido principal */
     main {
-      max-width: 1000px;
-      margin: 2rem auto;
+      max-width: 1200px;
+      margin: 3rem auto;
       padding: 0 1rem;
     }
 
     section {
       display: none;
+      animation: fadeInUp 0.6s ease-out;
     }
 
     section.active {
       display: block;
     }
 
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Tarjetas de contenido mejoradas */
+    .content-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-soft);
+      transition: var(--transition-smooth);
+    }
+
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      color: var(--secondary-pink);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    /* Libro mejorado */
     .book-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
     }
 
     .book-page {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
-      padding: 2rem;
-      min-height: 400px;
+      padding: 2.5rem;
+      min-height: 500px;
       line-height: 1.8;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    }
+
+    .book-page h3 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      color: var(--accent-gold);
+      margin-bottom: 1.5rem;
+      text-align: center;
     }
 
     .book-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
     }
 
     .book-nav button {
-      background: rgba(255, 255, 255, 0.2);
+      background: linear-gradient(135deg, var(--primary-purple), var(--secondary-pink));
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 50%;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      color: white;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: var(--transition-smooth);
+      font-weight: 600;
     }
 
     .book-nav button:disabled {
       opacity: 0.4;
       cursor: not-allowed;
+      background: rgba(255,255,255,0.1);
     }
 
-    .book-nav button:hover {
-      background: rgba(255, 255, 255, 0.3);
+    .book-nav button:hover:not(:disabled) {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(107, 70, 193, 0.4);
     }
 
+    /* Galería de personajes mejorada */
     .characters-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
     }
 
     .character-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
-      padding: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
       text-align: center;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .character-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: var(--transition-smooth);
+    }
+
+    .character-card:hover::before {
+      left: 100%;
+    }
+
+    .character-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
     .character-card img {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       object-fit: cover;
       border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 3px solid var(--accent-gold);
+      transition: var(--transition-smooth);
+    }
+
+    .character-card:hover img {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+    }
+
+    .character-card h3 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: var(--secondary-pink);
       margin-bottom: 0.5rem;
     }
 
+    /* Controles de música mejorados */
+    .music-controls {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 25px;
+      padding: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      box-shadow: var(--shadow-soft);
+      z-index: 1000;
+    }
+
+    .music-toggle {
+      background: linear-gradient(135deg, var(--primary-purple), var(--secondary-pink));
+      border: none;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .music-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(107, 70, 193, 0.4);
+    }
+
+    .volume-control {
+      width: 80px;
+    }
+
+    /* Footer mejorado */
     footer {
       text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.6);
+      padding: 3rem 1rem;
+      margin-top: 4rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.3));
+      border-top: 1px solid var(--glass-border);
     }
 
-    .decoration {
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 0;
+    footer p {
+      color: var(--text-dim);
+      font-style: italic;
     }
 
-    .decoration div {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.2;
-      mix-blend-mode: overlay;
-      animation: float 15s infinite ease-in-out;
+    /* Responsive design */
+    @media (max-width: 768px) {
+      nav {
+        gap: 1rem;
+        margin: 0 0.5rem;
+      }
+      
+      nav button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      .book-page {
+        padding: 1.5rem;
+        font-size: 1rem;
+      }
+      
+      .characters-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+      
+      .music-controls {
+        bottom: 1rem;
+        right: 1rem;
+      }
     }
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
+    /* Efectos de carga */
+    .loading {
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Cursor personalizado */
+    body {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewport="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23ff6ec4" opacity="0.5"/></svg>'), auto;
+    }
+
+    button, a {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewport="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23f59e0b"/></svg>'), pointer;
     }
   </style>
 </head>
-<body>
+<body class="loading">
 
-  <!-- Fondo decorativo -->
-  <div class="decoration" id="decoration"></div>
+  <!-- Fondo mágico animado -->
+  <div class="magical-background"></div>
 
-  <!-- Cabecera -->
+  <!-- Cabecera mejorada -->
   <header>
-    <h1>Alicia en el País de las Maravillas</h1>
-    <p>Para mi amor más especial</p>
+    <div class="title-container">
+      <h1>✨ Alicia en el País de las Maravillas ✨</h1>
+      <p class="subtitle">Para mi amor más especial 💕</p>
+    </div>
   </header>
 
-  <!-- Navegación -->
+  <!-- Navegación mejorada -->
   <nav id="nav">
-    <button class="active" data-section="inicio">Inicio</button>
-    <button data-section="el-libro">El Libro</button>
-    <button data-section="personajes">Personajes</button>
+    <button class="active" data-section="inicio">🏠 Inicio</button>
+    <button data-section="el-libro">📖 El Libro</button>
+    <button data-section="personajes">🎭 Personajes</button>
   </nav>
 
   <!-- Contenido principal -->
   <main>
     <!-- Sección Inicio -->
     <section id="inicio" class="active">
-      <h2>Bienvenida a tu mundo mágico</h2>
-      <p>
-        Esta página está creada con amor para ti, inspirada en “Alicia en el País de las Maravillas”, un cuento que nos recuerda que la imaginación no tiene límites. Aquí podrás leer el libro completo, conocer a sus personajes y disfrutar de un ambiente romántico y mágico.
-      </p>
-      <p class="mt-4">
-        Este es nuestro pequeño País de las Maravillas, hecho con cariño para ti. Espero que te sientas tan especial aquí como tú me haces sentir a mí cada día.
-      </p>
+      <div class="content-card">
+        <h2>💝 Bienvenida a tu mundo mágico</h2>
+        <p>
+          Esta página está creada con todo mi amor para ti, inspirada en "Alicia en el País de las Maravillas", 
+          un cuento que nos recuerda que la imaginación no tiene límites y que los sueños más hermosos pueden 
+          hacerse realidad cuando los compartimos con alguien especial.
+        </p>
+        <br>
+        <p>
+          Aquí podrás leer el libro completo, conocer a sus personajes encantadores y disfrutar de un ambiente 
+          mágico y romántico que he creado especialmente para ti. Cada detalle está pensado para hacerte sonreír 
+          y recordarte lo especial que eres para mí.
+        </p>
+        <br>
+        <p style="text-align: center; font-style: italic; color: var(--secondary-pink); font-size: 1.2rem;">
+          Este es nuestro pequeño País de las Maravillas, hecho con cariño para ti. 
+          Espero que te sientas tan especial aquí como tú me haces sentir a mí cada día. 💖
+        </p>
+      </div>
     </section>
 
     <!-- Sección El Libro -->
     <section id="el-libro">
-      <h2>El Libro Mágico</h2>
+      <h2>📚 El Libro Mágico</h2>
       <div class="book-container">
         <div class="book-page" id="book-page">
           <h3 id="chapter-title">Cargando...</h3>
           <div id="chapter-content" style="white-space: pre-line;"></div>
         </div>
         <div class="book-nav">
-          <button id="prev-chapter">< Anterior</button>
+          <button id="prev-chapter">← Anterior</button>
           <span id="page-info">Página 1 de 1</span>
-          <button id="next-chapter">Siguiente ></button>
+          <button id="next-chapter">Siguiente →</button>
         </div>
       </div>
     </section>
 
     <!-- Sección Personajes -->
     <section id="personajes">
-      <h2>Personajes Encantadores</h2>
+      <h2>🎭 Personajes Encantadores</h2>
       <div class="characters-grid" id="characters-grid"></div>
     </section>
   </main>
 
+  <!-- Controles de música -->
+  <div class="music-controls">
+    <button class="music-toggle" id="music-toggle" title="Reproducir/Pausar música">🎵</button>
+    <input type="range" class="volume-control" id="volume-control" min="0" max="100" value="30" title="Volumen">
+  </div>
+
   <!-- Pie de página -->
   <footer>
-    <p>Una experiencia diseñada con amor para ti, mi propia Alicia.</p>
-    <p>© 2025 El mundo de nuestra imaginación</p>
+    <p>✨ Una experiencia diseñada con amor para ti, mi propia Alicia. ✨</p>
+    <p>© 2025 El mundo de nuestra imaginación 💕</p>
   </footer>
 
   <!-- Música de fondo -->
-  <audio id="background-music" loop autoplay>
-    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Music_for_Videos/Sarah_Jessica/sounds_from_a_parallel_world/Sarah_Jessica_-_01_-_Magical_Moments.mp3 " type="audio/mp3" />
-    Tu navegador no admite reproducción de audio.
+  <audio id="background-music" loop>
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/Music_for_Videos/Sarah_Jessica/sounds_from_a_parallel_world/Sarah_Jessica_-_01_-_Magical_Moments.mp3" type="audio/mp3" />
   </audio>
 
-  <!-- Script del libro y personajes -->
   <script>
-    // Capítulos completos del libro
+    // Capítulos del libro (mantengo el contenido original)
     const storyChapters = [
       {
         title: "Capítulo I: Cayendo por la madriguera",
@@ -285,48 +583,55 @@
       }
     ];
 
-    // Datos de personajes
+    // Personajes con imágenes mejoradas
     const characters = [
       {
         name: "Alicia",
-        image: "https://github.com/jarothbs/love/blob/main/3659b2ad-ca1f-4ca1-8eb6-e0eb8ff3ecd1%20(1).png ",
-        description: "Curiosa, valiente y soñadora. Su viaje al País de las Maravillas cambia su forma de ver el mundo."
+        image: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=400&fit=crop&crop=face",
+        description: "Curiosa, valiente y soñadora. Su viaje al País de las Maravillas cambia su forma de ver el mundo y le enseña sobre el valor de la imaginación."
       },
       {
         name: "Conejo Blanco",
-        image: "https://preview.reve.art/api/project/3ce1508b-7256-460b-8526-80b44a674a33/image/7dad98e9-e004-4e1c-b5ff-09656040084a/url/filename/7dad98e9-e004-4e1c-b5ff-09656040084a?fit=contain&width=512 ",
-        description: "Apresurado, elegante y siempre consultando su reloj. Es el primer personaje que guía a Alicia a la aventura."
+        image: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400&h=400&fit=crop",
+        description: "Apresurado, elegante y siempre consultando su reloj dorado. Es el primer personaje que guía a Alicia hacia la aventura más extraordinaria."
       },
       {
         name: "Oruga Azul",
-        image: "https://picsum.photos/seed/oruga/200/200 ",
-        description: "Sentada sobre un hongo, fuma tranquilamente y le ofrece consejos crípticos a Alicia sobre cómo cambiar de tamaño."
+        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=400&fit=crop",
+        description: "Sabia y misteriosa, sentada sobre su hongo mágico. Fuma tranquilamente y le ofrece consejos crípticos a Alicia sobre cómo cambiar de tamaño."
       },
       {
         name: "Gato de Cheshire",
-        image: "https://picsum.photos/seed/cheshire/200/200 ",
-        description: "Sonríe constantemente y puede hacerse invisible, dejando solo su sonrisa flotando en el aire."
+        image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=400&fit=crop&crop=face",
+        description: "Sonríe constantemente con su enigmática sonrisa. Puede hacerse invisible, dejando solo su sonrisa flotando mágicamente en el aire."
       },
       {
         name: "Reina de Corazones",
-        image: "https://picsum.photos/seed/reina/200/200 ",
-        description: "Autoritaria y temperamental. Siempre ordena: ¡Que le corten la cabeza!"
+        image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
+        description: "Autoritaria y temperamental, gobierna su reino con mano firme. Su frase favorita es: '¡Que le corten la cabeza!' y adora jugar al croquet."
       },
       {
         name: "Sombrerero Loco",
-        image: "https://picsum.photos/seed/sombrero/200/200 ",
-        description: "Amante del té eterno y de acertijos imposibles. Vive con la Liebre de Marzo y el Lirón."
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+        description: "Excéntrico y encantador, amante del té eterno y de acertijos imposibles. Vive en una merienda perpetua con la Liebre de Marzo y el Lirón."
       }
     ];
 
-    // Funciones del libro
+    // Variables globales
     let currentPage = 0;
+    let isPlaying = false;
+    
+    // Elementos del DOM
     const bookTitle = document.getElementById('chapter-title');
     const bookContent = document.getElementById('chapter-content');
     const pageInfo = document.getElementById('page-info');
     const prevBtn = document.getElementById('prev-chapter');
     const nextBtn = document.getElementById('next-chapter');
+    const audio = document.getElementById('background-music');
+    const musicToggle = document.getElementById('music-toggle');
+    const volumeControl = document.getElementById('volume-control');
 
+    // Funciones del libro
     function showChapter(index) {
       const chapter = storyChapters[index];
       bookTitle.textContent = chapter.title;
@@ -334,8 +639,20 @@
       pageInfo.textContent = `Página ${index + 1} de ${storyChapters.length}`;
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === storyChapters.length - 1;
+      
+      // Efecto de aparición
+      const bookPage = document.getElementById('book-page');
+      bookPage.style.opacity = '0';
+      bookPage.style.transform = 'translateY(20px)';
+      
+      setTimeout(() => {
+        bookPage.style.transition = 'all 0.5s ease';
+        bookPage.style.opacity = '1';
+        bookPage.style.transform = 'translateY(0)';
+      }, 100);
     }
 
+    // Event listeners para navegación del libro
     prevBtn.addEventListener('click', () => {
       if (currentPage > 0) {
         currentPage--;
@@ -350,15 +667,27 @@
       }
     });
 
-    showChapter(currentPage);
+    // Navegación con teclado
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('el-libro').classList.contains('active')) {
+        if (e.key === 'ArrowLeft' && currentPage > 0) {
+          currentPage--;
+          showChapter(currentPage);
+        } else if (e.key === 'ArrowRight' && currentPage < storyChapters.length - 1) {
+          currentPage++;
+          showChapter(currentPage);
+        }
+      }
+    });
 
     // Mostrar personajes
     const charactersGrid = document.getElementById('characters-grid');
-    characters.forEach(char => {
+    characters.forEach((char, index) => {
       const card = document.createElement('div');
       card.className = 'character-card';
+      card.style.animationDelay = `${index * 0.1}s`;
       card.innerHTML = `
-        <img src="${char.image}" alt="${char.name}" />
+        <img src="${char.image}" alt="${char.name}" onerror="this.src='https://via.placeholder.com/120x120/6b46c1/ffffff?text=${char.name}'" />
         <h3>${char.name}</h3>
         <p>${char.description}</p>
       `;
@@ -378,22 +707,82 @@
       });
     });
 
-    // Reproducir música
-    const audio = document.getElementById('background-music');
+    // Control de música
     audio.volume = 0.3;
-    audio.play().catch(e => console.log('Error de auto-reproducción:', e));
+    
+    musicToggle.addEventListener('click', () => {
+      if (isPlaying) {
+        audio.pause();
+        musicToggle.textContent = '🎵';
+        isPlaying = false;
+      } else {
+        audio.play().catch(e => console.log('Error de reproducción:', e));
+        musicToggle.textContent = '⏸️';
+        isPlaying = true;
+      }
+    });
 
-    // Efectos decorativos
-    const decoration = document.getElementById('decoration');
-    for (let i = 0; i < 20; i++) {
-      const dot = document.createElement('div');
-      dot.style.top = `${Math.random() * 100}%`;
-      dot.style.left = `${Math.random() * 100}%`;
-      dot.style.width = dot.style.height = `${Math.random() * 100 + 50}px`;
-      dot.style.background = `radial-gradient(circle at center, rgba(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, 0.3), transparent 70%)`;
-      dot.style.animationDuration = `${Math.random() * 10 + 10}s`;
-      decoration.appendChild(dot);
+    volumeControl.addEventListener('input', (e) => {
+      audio.volume = e.target.value / 100;
+    });
+
+    // Intentar reproducir música automáticamente
+    document.addEventListener('click', () => {
+      if (!isPlaying) {
+        audio.play().then(() => {
+          musicToggle.textContent = '⏸️';
+          isPlaying = true;
+        }).catch(() => {});
+      }
+    }, { once: true });
+
+    // Efectos de partículas mejorados
+    function createParticle() {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      
+      const size = Math.random() * 20 + 5;
+      const startX = Math.random() * window.innerWidth;
+      const colors = ['#ff6ec4', '#7c3aed', '#06b6d4', '#10b981', '#f59e0b'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      particle.style.left = startX + 'px';
+      particle.style.background = `radial-gradient(circle, ${color}66, transparent)`;
+      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      
+      document.body.appendChild(particle);
+      
+      // Remover partícula después de la animación
+      setTimeout(() => {
+        if (particle.parentNode) {
+          particle.parentNode.removeChild(particle);
+        }
+      }, 15000);
     }
+
+    // Crear partículas periódicamente
+    setInterval(createParticle, 2000);
+
+    // Inicialización
+    showChapter(currentPage);
+    
+    // Efecto de carga inicial
+    setTimeout(() => {
+      document.body.classList.add('loaded');
+    }, 500);
+
+    // Efectos de hover para elementos interactivos
+    document.querySelectorAll('button, .character-card').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        el.style.transform = el.style.transform.replace('scale(1)', '') + ' scale(1.05)';
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        el.style.transform = el.style.transform.replace(' scale(1.05)', '');
+      });
+    });
   </script>
 </body>
 </html>
