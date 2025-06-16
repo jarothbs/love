@@ -3,94 +3,219 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Alicia en el País de las Maravillas</title>
+  <title>Alicia en el País de las Maravillas - Un Mundo Mágico Para Ti</title>
   <style>
+    /* Variables CSS para colores */
+    :root {
+      --primary-gradient: linear-gradient(135deg, #2c003e 0%, #4d007d 50%, #004d40 100%);
+      --text-gradient: linear-gradient(to right, #ff6ec4, #7873f5);
+      --accent-pink: #ffb6c1;
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-hover: rgba(255, 255, 255, 0.2);
+    }
+
     /* Estilos generales */
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Georgia', serif;
-      background: linear-gradient(135deg, #2c003e 0%, #4d007d 50%, #004d40 100%);
+      background: var(--primary-gradient);
       color: white;
       overflow-x: hidden;
-    }
-
-    /* Animaciones */
-    @keyframes bounce-slow {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-
-    /* Cabecera */
-    header {
-      text-align: center;
-      padding: 2rem 1rem;
+      min-height: 100vh;
       position: relative;
     }
 
+    /* Scroll suave */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-pink);
+      border-radius: 5px;
+    }
+
+    /* Animaciones mejoradas */
+    @keyframes bounce-slow {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      25% { transform: translateY(-15px) rotate(1deg); }
+      75% { transform: translateY(-15px) rotate(-1deg); }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255, 110, 196, 0.5); }
+      50% { box-shadow: 0 0 30px rgba(255, 110, 196, 0.8), 0 0 40px rgba(120, 115, 245, 0.6); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Loader */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-gradient);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    .loader-content {
+      text-align: center;
+      animation: bounce-slow 2s infinite;
+    }
+
+    .loader-content img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    /* Cabecera mejorada */
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      position: relative;
+      animation: fadeIn 1s ease;
+    }
+
+    .profile-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
     header img {
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 150px;
       object-fit: cover;
       border-radius: 50%;
-      border: 4px solid #ffb6c1;
-      box-shadow: 0 0 15px #fff3;
-      animation: bounce-slow 3s infinite;
+      border: 5px solid var(--accent-pink);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+      animation: bounce-slow 3s infinite, glow 3s infinite;
+      transition: transform 0.3s ease;
+    }
+
+    header img:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .sparkles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 2s infinite;
     }
 
     header h1 {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 5vw, 3rem);
       font-weight: bold;
-      background: linear-gradient(to right, #ff6ec4, #7873f5);
+      background: var(--text-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
 
     header p {
       font-style: italic;
-      margin-top: 0.5rem;
+      font-size: 1.2rem;
       color: #fff;
+      opacity: 0.9;
     }
 
-    /* Navegación */
+    /* Navegación mejorada */
     nav {
-      background: #5e218d;
+      background: rgba(94, 33, 141, 0.8);
+      backdrop-filter: blur(10px);
       display: flex;
       justify-content: center;
-      padding: 1rem;
-      gap: 1.5rem;
+      padding: 1.2rem;
+      gap: 2rem;
       flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
 
     nav button {
       background: none;
       border: none;
       color: white;
-      font-size: 1rem;
+      font-size: 1.1rem;
       cursor: pointer;
       position: relative;
       transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      font-family: inherit;
     }
 
-    nav button:hover,
-    nav button.active {
-      color: #fff;
+    nav button:hover {
+      transform: translateY(-2px);
+      text-shadow: 0 2px 4px rgba(255,255,255,0.3);
     }
 
     nav button::after {
       content: '';
       position: absolute;
       width: 0;
-      height: 2px;
+      height: 3px;
       bottom: -5px;
-      left: 0;
-      background: #fff;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(to right, #ff6ec4, #7873f5);
       transition: width 0.3s ease;
+      border-radius: 2px;
     }
 
     nav button:hover::after,
@@ -98,48 +223,129 @@
       width: 100%;
     }
 
-    /* Contenido principal */
+    /* Contenido principal mejorado */
     main {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      min-height: 60vh;
     }
 
     section {
       display: none;
+      animation: fadeIn 0.5s ease;
     }
 
     section.active {
       display: block;
     }
 
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      background: var(--text-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    /* Sección de inicio mejorada */
+    .welcome-content {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .welcome-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .welcome-content p:last-child {
+      margin-bottom: 0;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    /* Libro mejorado */
     .book-container {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 2rem;
     }
 
     .book-page {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
-      padding: 2rem;
-      min-height: 400px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 3rem;
+      min-height: 500px;
       line-height: 1.8;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-page::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .book-page h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-pink);
+      text-align: center;
+    }
+
+    #chapter-content {
+      font-size: 1.05rem;
+      text-align: justify;
+      position: relative;
+      z-index: 1;
     }
 
     .book-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .book-nav button {
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 50%;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--accent-pink);
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      color: white;
+      font-size: 1rem;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .book-nav button:hover:not(:disabled) {
+      background: var(--glass-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
     }
 
     .book-nav button:disabled {
@@ -147,79 +353,279 @@
       cursor: not-allowed;
     }
 
-    .book-nav button:hover {
-      background: rgba(255, 255, 255, 0.3);
+    #page-info {
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-align: center;
+      flex: 1;
     }
 
+    /* Personajes mejorados */
     .characters-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
     }
 
     .character-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
-      padding: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2rem;
       text-align: center;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .character-card::before {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 300%;
+      height: 300%;
+      background: radial-gradient(circle, var(--glass-hover) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .character-card:hover::before {
+      opacity: 1;
     }
 
     .character-card:hover {
-      transform: scale(1.05);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(255, 110, 196, 0.3);
     }
 
     .character-card img {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       object-fit: cover;
       border-radius: 50%;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      border: 3px solid var(--accent-pink);
+      transition: transform 0.3s ease;
     }
 
+    .character-card:hover img {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 5px 20px rgba(255, 182, 193, 0.5);
+    }
+
+    .character-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-pink);
+    }
+
+    .character-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    /* Footer mejorado */
     footer {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 3rem 1rem;
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.7);
+      background: rgba(0, 0, 0, 0.2);
+      margin-top: 4rem;
     }
 
-    /* Decoración visual */
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    /* Controles de música */
+    .music-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      border-radius: 15px;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      z-index: 100;
+    }
+
+    .music-controls button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .music-controls button:hover {
+      transform: scale(1.2);
+      background: var(--glass-hover);
+    }
+
+    .music-info {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Decoración visual mejorada */
     .decoration {
       position: fixed;
       width: 100vw;
       height: 100vh;
       pointer-events: none;
       z-index: 0;
+      top: 0;
+      left: 0;
     }
 
     .dot {
       position: absolute;
       border-radius: 50%;
-      opacity: 0.2;
-      mix-blend-mode: overlay;
-      animation: float 15s infinite ease-in-out;
+      opacity: 0.15;
+      mix-blend-mode: screen;
+      animation: float 20s infinite ease-in-out;
+      filter: blur(1px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      nav {
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      nav button {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .welcome-content,
+      .book-page {
+        padding: 2rem;
+      }
+
+      .book-nav {
+        justify-content: center;
+      }
+
+      .music-controls {
+        bottom: 10px;
+        right: 10px;
+        padding: 0.8rem;
+      }
+
+      .music-info {
+        display: none;
+      }
+    }
+
+    /* Botón de scroll */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 99;
+      border: 2px solid var(--accent-pink);
+    }
+
+    .scroll-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-to-top:hover {
+      background: var(--glass-hover);
+      transform: translateY(-5px);
+    }
+
+    /* Efectos especiales */
+    .heart-float {
+      position: fixed;
+      font-size: 2rem;
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+      animation: heartFloat 3s ease-out forwards;
+    }
+
+    @keyframes heartFloat {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-50px) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(0.5);
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <img src="https://github.com/jarothbs/love/blob/proyecto/alicia2.png?raw=true" alt="Cargando..." onerror="this.style.display='none'" />
+      <p>Preparando tu mundo mágico...</p>
+    </div>
+  </div>
 
   <!-- Fondo decorativo -->
   <div class="decoration" id="decoration"></div>
 
   <!-- Cabecera -->
   <header>
-    <img src="https://github.com/jarothbs/love/blob/proyecto/alicia2.png?raw=true "
-         alt="Alicia" />
+    <div class="profile-container">
+      <img src="https://github.com/jarothbs/love/blob/proyecto/alicia2.png?raw=true" 
+           alt="Alicia" 
+           id="profile-img" />
+      <div class="sparkles" id="sparkles"></div>
+    </div>
     <h1>Alicia en el País de las Maravillas</h1>
-    <p>Para mi amor más especial</p>
+    <p>✨ Para mi amor más especial ✨</p>
   </header>
 
   <!-- Navegación -->
   <nav id="nav">
-    <button class="active" data-section="inicio">Inicio</button>
-    <button data-section="el-libro">El Libro</button>
-    <button data-section="personajes">Personajes</button>
+    <button class="active" data-section="inicio">🏠 Inicio</button>
+    <button data-section="el-libro">📖 El Libro</button>
+    <button data-section="personajes">👥 Personajes</button>
   </nav>
 
   <!-- Contenido principal -->
@@ -227,12 +633,22 @@
     <!-- Sección Inicio -->
     <section id="inicio" class="active">
       <h2>Bienvenida a tu mundo mágico</h2>
-      <p>
-        Esta página está creada con amor para ti, inspirada en “Alicia en el País de las Maravillas”, un cuento que nos recuerda que la imaginación no tiene límites. Aquí podrás leer el libro completo, conocer a sus personajes y disfrutar de un ambiente romántico y mágico.
-      </p>
-      <p class="mt-4">
-        Este es nuestro pequeño País de las Maravillas, hecho con cariño para ti. Espero que te sientas tan especial aquí como tú me haces sentir a mí cada día 💚💜.
-      </p>
+      <div class="welcome-content">
+        <p>
+          Esta página está creada con amor para ti, inspirada en "Alicia en el País de las Maravillas", 
+          un cuento que nos recuerda que la imaginación no tiene límites. Aquí podrás leer el libro completo, 
+          conocer a sus personajes y disfrutar de un ambiente romántico y mágico diseñado especialmente para ti.
+        </p>
+        <p>
+          Como Alicia en su aventura, este espacio te invita a explorar, soñar y descubrir. 
+          Cada detalle ha sido pensado para crear un momento especial, donde la magia y el amor 
+          se entrelazan en cada página.
+        </p>
+        <p>
+          Este es nuestro pequeño País de las Maravillas, hecho con cariño para ti. 
+          Espero que te sientas tan especial aquí como tú me haces sentir a mí cada día 💚💜.
+        </p>
+      </div>
     </section>
 
     <!-- Sección El Libro -->
@@ -244,9 +660,9 @@
           <div id="chapter-content" style="white-space: pre-line;"></div>
         </div>
         <div class="book-nav">
-          <button id="prev-chapter">< Anterior</button>
+          <button id="prev-chapter">⬅ Anterior</button>
           <span id="page-info">Página 1 de 1</span>
-          <button id="next-chapter">Siguiente ></button>
+          <button id="next-chapter">Siguiente ➡</button>
         </div>
       </div>
     </section>
@@ -260,15 +676,25 @@
 
   <!-- Pie de página -->
   <footer>
-    <p>Una experiencia diseñada con amor para ti, mi Infinito 💚♾💜.</p>
+    <p>💫 Una experiencia diseñada con amor para ti, mi Infinito 💚♾💜 💫</p>
     <p>© 2025 El mundo de nuestra imaginación</p>
   </footer>
 
-  <!-- Canciones -->
-  <audio id="background-music-1" src="https://github.com/jarothbs/love/raw/proyecto/Timeless.mp3 "></audio>
-  <audio id="background-music-2" src="https://github.com/jarothbs/love/raw/proyecto/The%20Dreamscape.mp3 "></audio>
+  <!-- Controles de música -->
+  <div class="music-controls">
+    <button id="play-pause">⏸️</button>
+    <button id="next-song">⏭️</button>
+    <span class="music-info" id="music-info">Timeless</span>
+  </div>
 
-  <!-- Script del libro y personajes -->
+  <!-- Botón scroll to top -->
+  <div class="scroll-to-top" id="scrollTop">⬆️</div>
+
+  <!-- Canciones -->
+  <audio id="background-music-1" src="https://github.com/jarothbs/love/raw/proyecto/Timeless.mp3"></audio>
+  <audio id="background-music-2" src="https://github.com/jarothbs/love/raw/proyecto/The%20Dreamscape.mp3"></audio>
+
+  <!-- Script mejorado -->
   <script>
     // Capítulos completos del libro
     const storyChapters = [
@@ -294,7 +720,7 @@
       },
       {
         title: "Capítulo VI: Marrano y pimienta",
-        content: `Alicia observa la casa durante un par de minutos. De pronto, un lacayo de librea con cara de pez sale del bosque y golpea la puerta. Otro lacayo de librea, con cara de rana, abre. Ambos llevan pelucas empolvadas. El Lacayo-Pez entrega una carta al Lacayo-Rana, diciendo solemnemente: "Para la Duquesa. Una invitación para jugar al croquet de parte de la Reina". El Lacayo-Rana repite la frase invirtiendo el orden. Ambos se inclinan y sus rizos se enredan. Alicia ríe tanto que tiene que volver al bosque. Cuando regresa, el Lacayo-Pez se ha ido y el Lacayo-Rana está sentado en el suelo mirando al cielo.\n\nAlicia recoge al bebé con dificultad; es una criatura de formas extrañas que estira brazos y piernas como una estrella de mar y resopla como una locomotora. Encuentra el modo de sostenerlo (retorciéndolo en un nudo y sujetándole oreja y pie) y lo saca al aire libre, pensando que lo matarían si lo dejaba. El bebé gruñe. Alicia le dice que no es modo de expresarse. El bebé vuelve a gruñir. Alicia nota que tiene una nariz muy respingada, como un hocico, y ojos pequeños. Piensa que tal vez solo solloza, pero no hay lágrimas. Le advierte seriamente que si piensa convertirse en cerdo, no tendrá nada más que ver con él. El bebé vuelve a gruñir. Siguen en silencio. Alicia se pregunta qué hará con él al llegar a casa cuando la criatura gruñe fuerte. No hay duda: es un marrano. Alicia piensa que es ridículo seguir cargándolo. Deposita al animal en el suelo y se siente aliviada al verlo trotar hacia el bosque.`
+        content: `Alicia observa la casa durante un par de minutos. De pronto, un lacayo de librea con cara de pez sale del bosque y golpea la puerta. Otro lacayo de librea, con cara de rana, abre. Ambos llevan pelucas empolvadas. El Lacayo-Pez entrega una carta al Lacayo-Rana, diciendo solemnemente: "Para la Duquesa. Una invitación para jugar al croquet de parte de la Reina". El Lacayo-Rana repite la frase invirtiendo el orden. Ambos se inclinan y sus rizos se enredan. Alicia ríe tanto que tiene que volver al bosque. Cuando regresa, el Lacayo-Pez se ha ido y el Lacayo-Rana está sentado en el suelo mirando al cielo.\n\nAlicia recoge al bebé con dificultad; es una criatura de formas extrañas que estira brazos y piernas como una estrella de mar y resopla como una locomotora. Encuentra el modo de sostenerlo (retorciéndolo en un nudo y sujetándole oreja y pie) y lo saca al aire libre, pensando que lo matarían si lo dejara. El bebé gruñe. Alicia le dice que no es modo de expresarse. El bebé vuelve a gruñir. Alicia nota que tiene una nariz muy respingada, como un hocico, y ojos pequeños. Piensa que tal vez solo solloza, pero no hay lágrimas. Le advierte seriamente que si piensa convertirse en cerdo, no tendrá nada más que ver con él. El bebé vuelve a gruñir. Siguen en silencio. Alicia se pregunta qué hará con él al llegar a casa cuando la criatura gruñe fuerte. No hay duda: es un marrano. Alicia piensa que es ridículo seguir cargándolo. Deposita al animal en el suelo y se siente aliviada al verlo trotar hacia el bosque.`
       },
       {
         title: "Capítulo VII: Una merienda de locos",
@@ -320,121 +746,3 @@
         title: "Capítulo XII: El testimonio de Alicia",
         content: `"¡Presente!", grita Alicia, olvidando cuánto ha crecido, y al ponerse de pie bruscamente, vuelca el estrado del jurado con el borde de su pollera. Todos miran a Alicia. La Reina pregunta con severidad quién es, dirigiéndose a la Sota, que solo se inclina y sonríe. "¡Idiota!", dice la Reina y pregunta a Alicia su nombre. "Me llamo Alicia, para servir a Su Majestad", responde Alicia, pensando que no son más que cartas y no debe temerles. La Reina pregunta quiénes son los que están tirados junto al rosal (los jardineros boca abajo). Alicia, sorprendida de su propia audacia, responde que cómo podría saberlo, que no es asunto suyo. La Reina se pone roja de rabia y grita: "¡Que le corten la cabeza! ¡Que le corten...!". "¡Qué disparate!", dice Alicia en voz alta y resuelta, y la Reina calla. El Rey, tímido, le pide consideración, diciendo que es solo una niña. La Reina ordena a la Sota que dé vueltas a los jardineros. Los tres se levantan, hacen reverencias y corren.`
       }
-    ];
-
-    const characters = [
-      {
-        name: "Alicia",
-        image: "https://github.com/jarothbs/love/blob/proyecto/alicia.png?raw=true ",
-        description: "Curiosa, valiente y soñadora. Su viaje al País de las Maravillas cambia su forma de ver el mundo."
-      },
-      {
-        name: "Conejo Blanco",
-        image: "https://github.com/jarothbs/love/blob/proyecto/conejo.png?raw=true ",
-        description: "Apresurado, elegante y siempre consultando su reloj. Es el primer personaje que guía a Alicia a la aventura."
-      },
-      {
-        name: "Oruga Azul",
-        image: "https://github.com/jarothbs/love/blob/proyecto/oruga.png?raw=true ",
-        description: "Sentada sobre un hongo, fuma tranquilamente y le ofrece consejos crípticos a Alicia sobre cómo cambiar de tamaño."
-      },
-      {
-        name: "Gato de Cheshire",
-        image: "https://github.com/jarothbs/love/blob/proyecto/gato.png?raw=true ",
-        description: "Sonríe constantemente y puede hacerse invisible, dejando solo su sonrisa flotando en el aire."
-      },
-      {
-        name: "Reina de Corazones",
-        image: "https://github.com/jarothbs/love/blob/proyecto/reina.png?raw=true ",
-        description: "Autoritaria y temperamental. Siempre ordena: ¡Que le corten la cabeza!"
-      },
-      {
-        name: "Sombrerero Loco",
-        image: "https://github.com/jarothbs/love/blob/proyecto/sombrerero.png?raw=true ",
-        description: "Amante del té eterno y de acertijos imposibles. Vive con la Liebre de Marzo y el Lirón."
-      }
-    ];
-
-    // Función para mostrar capítulo actual
-    let currentPage = 0;
-    const bookTitle = document.getElementById("chapter-title");
-    const bookContent = document.getElementById("chapter-content");
-    const pageInfo = document.getElementById("page-info");
-    const prevBtn = document.getElementById("prev-chapter");
-    const nextBtn = document.getElementById("next-chapter");
-
-    function showChapter(index) {
-      if (index >= 0 && index < storyChapters.length) {
-        const chapter = storyChapters[index];
-        bookTitle.textContent = chapter.title;
-        bookContent.textContent = chapter.content;
-        pageInfo.textContent = `Página ${index + 1} de ${storyChapters.length}`;
-        currentPage = index;
-        prevBtn.disabled = index === 0;
-        nextBtn.disabled = index === storyChapters.length - 1;
-      }
-    }
-
-    prevBtn.addEventListener("click", () => showChapter(currentPage - 1));
-    nextBtn.addEventListener("click", () => showChapter(currentPage + 1));
-
-    showChapter(currentPage);
-
-    // Mostrar personajes
-    const charactersGrid = document.getElementById("characters-grid");
-    characters.forEach(char => {
-      const card = document.createElement("div");
-      card.className = "character-card";
-      card.innerHTML = `
-        <img src="${char.image}" alt="${char.name}" />
-        <h3>${char.name}</h3>
-        <p>${char.description}</p>
-      `;
-      charactersGrid.appendChild(card);
-    });
-
-    // Navegación entre secciones
-    const sections = document.querySelectorAll("main section");
-    const navButtons = document.querySelectorAll("nav button");
-
-    navButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        navButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        sections.forEach(sec => sec.classList.remove("active"));
-        document.getElementById(btn.dataset.section).classList.add("active");
-      });
-    });
-
-    // Reproducción automática de canciones una tras otra
-    const music1 = document.getElementById("background-music-1");
-    const music2 = document.getElementById("background-music-2");
-
-    window.addEventListener("load", async () => {
-      try {
-        music1.volume = 0.3;
-        await music1.play();
-        music1.onended = () => {
-          music2.volume = 0.3;
-          music2.play().catch(() => {});
-        };
-      } catch (err) {
-        console.log("Error al iniciar música:", err);
-      }
-    });
-
-    // Efectos decorativos flotantes
-    const decoration = document.getElementById("decoration");
-    for (let i = 0; i < 20; i++) {
-      const dot = document.createElement("div");
-      dot.className = "dot";
-      dot.style.top = `${Math.random() * 100}%`;
-      dot.style.left = `${Math.random() * 100}%`;
-      dot.style.width = dot.style.height = `${Math.random() * 100 + 50}px`;
-      dot.style.background = `radial-gradient(circle at center, rgba(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, 0.3), transparent 70%)`;
-      dot.style.animationDuration = `${Math.random() * 10 + 10}s`;
-      decoration.appendChild(dot);
-    }
-  </script>
-</body>
-</html>
